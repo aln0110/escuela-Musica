@@ -12,8 +12,7 @@
     <p>These are the links for the pages inside the project</p>
     
 
-
-
+    
     <b>Link to the escuela page: </b>
     <a href="escuelaView.php">Escuela de musica</a> <br>
 

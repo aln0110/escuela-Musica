@@ -1,0 +1,8 @@
+{
+  "nombre": "John Doe",
+  "cedulaJurdica": "123456789",
+  "correo": "john@example.com",
+  "telefono": "1234567890",
+  "propietario": "John Doe",
+  "estado": true
+}

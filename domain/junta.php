@@ -1,7 +1,6 @@
 <?php 
 /*
      creo que se deberia de agregar correo y telefono a la tabla de juntas
-     esto es una prueba para ver si los cambios se reflejan en la web
 */
 class junta{
     private $idjunta;

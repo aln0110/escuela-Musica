@@ -5,13 +5,16 @@
 class junta{
     private $idjunta;
     private $nombrejunta;
+    private $identificacionjunta;
     private $cedulajunta;
     private $juntapuesto;
+    private $correo;
+    private $telefono;
     private $fechainiciojunta;
     private $fechafinaljunta;
     private $juntaactivo;
 
-    public function __construct($idjunta=null, $nombrejunta="", $cedulajunta="", $juntapuesto="", $fechainiciojunta="", $fechafinaljunta="", $juntaactivo="") {
+    public function __construct($idjunta=null, $nombrejunta="", $cedulajunta="", $juntapuesto="", $fechainiciojunta="", $fechafinaljunta="", $juntaactivo="", $identificacionjunta='', $correo='', $telefono='') {
         $this->idjunta = $idjunta;
         $this->nombrejunta = $nombrejunta;
         $this->cedulajunta = $cedulajunta;
@@ -19,6 +22,10 @@ class junta{
         $this->fechainiciojunta = $fechainiciojunta;
         $this->fechafinaljunta = $fechafinaljunta;
         $this->juntaactivo = $juntaactivo;
+        $this->identificacionjunta = $identificacionjunta;
+        $this->correo = $correo;
+        $this->telefono = $telefono;
+
     }
 
     public function getIdjunta() {
@@ -76,6 +83,28 @@ class junta{
     public function setJuntaactivo($juntaactivo) {
         $this->juntaactivo = $juntaactivo;
     }
+
+    public function getIdentificacionjunta() {
+        return $this->identificacionjunta;
+    }
+    public function setIdentificacionjunta($identificacionjunta) {
+        $this->identificacionjunta = $identificacionjunta;
+    }
+
+    public function getCorreo() {
+        return $this->correo;
+    }
+    public function setCorreo($correo) {
+        $this->correo = $correo;
+    }
+
+    public function getTelefono() {
+        return $this->telefono;
+    }
+    public function setTelefono($telefono) {
+        $this->telefono = $telefono;
+    }
+    
 
 
 }

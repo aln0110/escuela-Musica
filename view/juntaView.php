@@ -14,8 +14,11 @@
             <thead>
                 <th>ID</th>
                 <th>Nombre</th>
+                <th>Indentificacion</th>
                 <th>Cedula</th>
                 <th>Puesto</th>
+                <th>Correo</th>
+                <th>Telefono</th>
                 <th>Fecha inicio</th>
                 <th>Fecha fin</th>
                 <th>Estado</th>
@@ -30,8 +33,11 @@
                     echo "<tr>";
                     echo "<td>" . $junta->getIdjunta() . "</td>";
                     echo "<td>" . $junta->getNombrejunta() . "</td>";
+                    echo "<td>" . $junta->getIdentificacionjunta() . "</td>";
                     echo "<td>" . $junta->getCedulajunta() . "</td>";
                     echo "<td>" . $junta->getJuntapuesto() . "</td>";
+                    echo "<td>" . $junta->getCorreo() . "</td>";
+                    echo "<td>" . $junta->getTelefono() . "</td>";
                     echo "<td>" . $junta->getFechainiciojunta() . "</td>";
                     echo "<td>" . $junta->getFechafinaljunta() . "</td>";
 
@@ -72,11 +78,31 @@
             <label for="nombre"> Nombre</label><br>
             <input type="text" name="nombrejunta" required><br>
 
+            <label for="indentificacion">Tipo de identificacion</label><br>
+            <select name="tipoIdentificacion" id="tipoIdentificacion">
+                <option value="Cedula">Cedula</option>
+                <option value="Pasaporte">Pasaporte</option>
+                <option value="Dimex">Dimex</option>
+            </select><br>    
+           
             <label for="cedula">Cedula</label><br>
             <input type="text" name="cedulajunta" required><br>
 
             <label for="puesto">Puesto</label><br>
-            <input type="text" name="juntapuesto" required><br>
+            <select name="juntapuesto" id="juntapuesto">
+                <option value="Presidente">Presidente</option>
+                <option value="Vicepresidente">Vicepresidente</option>
+                <option value="Secretario">Secretario</option>
+                <option value="Tesorero">Tesorero</option>
+                <option value="Vocal">Vocal</option>
+                <option value="Padre">Padre</option>
+            </select><br>
+
+            <label for="Correo">Correo</label><br>
+            <input type="email" name="correo" required><br>
+
+            <label for="Telefono">Telefono</label><br>
+            <input type="text" name="telefono" required><br>
 
             <label for="fechaInicio">Fecha inicio</label><br>
             <input type="date" name="fechaIniciojunta" required><br>

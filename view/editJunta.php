@@ -17,7 +17,7 @@
             $junta =  new Junta();
 
             if (isset($_GET['idjunta'])) {
-                $junta = $juntaBusiness->getJunta($_GET['idjunta']);
+            $junta = $juntaBusiness->getJunta($_GET['idjunta']);
             }
             
             echo "<input type='hidden' name='idjunta' value='" . $junta->getIdjunta() . "'>"; echo "<br>";
@@ -25,11 +25,25 @@
             echo "<label for='nombrejunta'>Nombre:</label>"; echo "<br>";
             echo "<input type='text' name='nombrejunta' value='" . $junta->getNombrejunta() . "' required>"; echo "<br>";
 
+            echo "<label for='indentificacion'>Tipo de identificacion</label><br>";
+            echo "<select name=\"tipoIdentificacion\" id=\"tipoIdentificacion\">";
+            echo "    <option value=\"Cedula\">Cedula</option>";
+            echo "    <option value=\"Pasaporte\">Pasaporte</option>";
+            echo "    <option value=\"Dimex\">Dimex</option>";
+            echo "</select><br>";
+
             echo "<label for='cedulajunta'>Cedula:</label>"; echo "<br>";
             echo "<input type='text' name='cedulajunta' value='" . $junta->getCedulajunta() . "' required>"; echo "<br>";
 
             echo "<label for='juntapuesto'>Puesto:</label>"; echo "<br>";
-            echo "<input type='text' name='juntapuesto' value='" . $junta->getJuntapuesto() . "' required>"; echo "<br>";
+            echo "<select name=\"juntapuesto\" id=\"juntapuesto\">";
+            echo "    <option value=\"Presidente\">Presidente</option>";
+            echo "    <option value=\"Vicepresidente\">Vicepresidente</option>";
+            echo "    <option value=\"Secretario\">Secretario</option>";
+            echo "    <option value=\"Tesorero\">Tesorero</option>";
+            echo "    <option value=\"Vocal\">Vocal</option>";
+            echo "    <option value=\"Padre\">Padre</option>";
+            echo "</select><br>";
 
             echo "<label for='fechainiciojunta'>Fecha inicio:</label>"; echo "<br>";
             echo "<input type='date' name='fechainiciojunta' value='" . $junta->getFechainiciojunta() . "' required>"; echo "<br>";

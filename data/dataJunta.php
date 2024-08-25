@@ -6,8 +6,9 @@ class dataJunta extends Data {
 
     public function insertJunta($junta)
     {
-        $sql = "INSERT INTO tbjunta (tbjuntanombre, tbjuntacedula, tbjuntapuesto, tbjuntafechainicio, tbjuntafechafinal, tbjuntaactivo) VALUES
-       ('" . $junta->getNombrejunta() . "', '" . $junta->getCedulajunta() . "', '" . $junta->getJuntapuesto() . "', '" . $junta->getFechainiciojunta() . "', '" . $junta->getFechafinaljunta() . "', '" . $junta->getJuntaactivo() . "')";
+        $sql = "INSERT INTO tbjunta (tbjuntanombre, tbjuntaindentificacion, tbjuntacedula, tbjuntapuesto, tbjuntafechainicio, tbjuntafechafinal, tbjuntaactivo, tbjuntatelefono, tbjuntacorreo) VALUES
+           ('" . $junta->getNombrejunta() . "', '" . $junta->getIdentificacionjunta() . "', '" . $junta->getCedulajunta() . "', '" . $junta->getJuntapuesto() . "'
+           , '" . $junta->getFechainiciojunta() . "', '" . $junta->getFechafinaljunta() . "', '" . $junta->getJuntaactivo() . "', '" . $junta->getTelefono() . "', '" . $junta->getCorreo() . "')";
 
        $result = $this->conn->query($sql);
        mysqli_close($this->conn);
@@ -21,7 +22,7 @@ class dataJunta extends Data {
         mysqli_close($this->conn);
          $juntas = [];
         while ($row = $result->fetch_assoc()) {
-            $junta = new Junta($row['idjunta'], $row['tbjuntanombre'], $row['tbjuntacedula'], $row['tbjuntapuesto'], $row['tbjuntafechainicio'], $row['tbjuntafechafinal'], $row['tbjuntaactivo']);
+            $junta = new Junta($row['tbjuntaid'], $row['tbjuntanombre'], $row['tbjuntacedula'], $row['tbjuntapuesto'], $row['tbjuntafechainicio'], $row['tbjuntafechafinal'], $row['tbjuntaactivo'], $row['tbjuntaindentificacion'], $row['tbjuntatelefono'], $row['tbjuntacorreo']);
             array_push($juntas, $junta);
         }
         return $juntas;
@@ -33,7 +34,7 @@ class dataJunta extends Data {
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         while ($row = $result->fetch_assoc()) {
-            $junta = new Junta($row['idjunta'], $row['tbjuntanombre'], $row['tbjuntacedula'], $row['tbjuntapuesto'], $row['tbjuntafechainicio'], $row['tbjuntafechafinal'], $row['tbjuntaactivo']);
+            $junta = new Junta($row['tbjuntaid'], $row['tbjuntanombre'], $row['tbjuntacedula'], $row['tbjuntapuesto'], $row['tbjuntafechainicio'], $row['tbjuntafechafinal'], $row['tbjuntaactivo'], $row['tbjuntaactivo'], $row['tbjuntaindentificacion'], $row['tbjuntatelefono'], $row['tbjuntacorreo']);
         }
 
         return $junta;
@@ -41,10 +42,13 @@ class dataJunta extends Data {
 
     public function updateJunta($junta)
     {
-        $sql = "UPDATE tbjunta SET tbjuntanombre = '" . $junta->getNombrejunta() . "', tbjuntacedula = '" . $junta->getCedulajunta() . "', tbjuntapuesto = '" . $junta->getJuntapuesto() . "', tbjuntafechainicio = '" . $junta->getFechainiciojunta() . "', tbjuntafechafinal = '" . $junta->getFechafinaljunta() . "', tbjuntaactivo = '" . $junta->getJuntaactivo() . "' WHERE tbjuntaid = " . $junta->getIdjunta();
+        $sql = "UPDATE tbjunta SET tbjuntanombre = '" . $junta->getNombrejunta() . "', tbjuntaindentificacion = '" . $junta->getIdentificacionjunta() . "'
+        , tbjuntacedula = '" . $junta->getCedulajunta() . "', tbjuntapuesto = '" . $junta->getJuntapuesto() . "'
+        , tbjuntafechainicio = '" . $junta->getFechainiciojunta() . "', tbjuntafechafinal = '" . $junta->getFechafinaljunta() . "'
+        , tbjuntaactivo = '" . $junta->getJuntaactivo() . "', tbjuntatelefono = '" . $junta->getTelefono() . "', tbjuntacorreo = '" . $junta->getCorreo() . "' WHERE tbjuntaid = " . $junta->getIdjunta();
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
-        return $junta;
+        return $result;
     }
 
     public function deleteJunta($idjunta)

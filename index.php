@@ -14,10 +14,10 @@
 
     
     <b>Link to the escuela page: </b>
-    <a href="escuelaView.php">Escuela de musica</a> <br>
+    <a href="view/escuelaView.php">Escuela de musica</a> <br>
 
     <b>Link to the junta page: </b>
-    <a href="juntaView.php">Junta</a> <br>
+    <a href="view/juntaView.php">Junta</a> <br>
 
 
     

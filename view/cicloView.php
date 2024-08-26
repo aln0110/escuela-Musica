@@ -9,9 +9,10 @@
 </head>
 
 <body>
-    <div>
-        <table>
-            <thead>
+<div>
+    <table>
+        <thead>
+            <tr>
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Descripcion</th>
@@ -20,50 +21,51 @@
                 <th>Fecha Fin</th>
                 <th>Estado</th>
                 <th>Accion</th>
-            </thead>
-            <tbody>
-                <?php
-                include '../business/cicloBusiness.php';
-                $cicloBusiness = new CicloBusiness();
-                $ciclos = $cicloBusiness->getCiclos();
-                foreach ($ciclos as $ciclo) {
-                    echo "<tr>";
-                    echo "<td>" . $ciclo->getIdCiclo() . "</td>";
-                    echo "<td>" . $ciclo->getNombreCiclo() . "</td>";
-                    echo "<td>" . $ciclo->getDescripcionCiclo() . "</td>";
-                    echo "<td>" . $ciclo->getTipoCiclo() . "</td>";
-                    echo "<td>" . $ciclo->getFechaInicioCiclo() . "</td>";
-                    echo "<td>" . $ciclo->getFechaFinCiclo() . "</td>";
-                    echo "<td>";
-                    if ($ciclo->getEstadoCiclo() == 1) {
-                        echo "Activo";
-                    } else {
-                        echo "Inactivo";
-                    }
-                    echo "</td>";
-                    
-                }
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            include '../business/cicloBusiness.php';
+            $cicloBusiness = new CicloBusiness();
+            $ciclos = $cicloBusiness->getCiclos();
+            foreach ($ciclos as $ciclo) {
+                echo "<tr>";
+                echo "<td>" . $ciclo->getIdCiclo() . "</td>";
+                echo "<td>" . $ciclo->getNombreCiclo() . "</td>";
+                echo "<td>" . $ciclo->getDescripcionCiclo() . "</td>";
+                echo "<td>" . $ciclo->getTipoCiclo() . "</td>";
+                echo "<td>" . $ciclo->getFechaInicioCiclo() . "</td>";
+                echo "<td>" . $ciclo->getFechaFinCiclo() . "</td>";
+
                 echo "<td>";
-                echo "<form method='post' action='../business/cicloActions.php'>";
+                if ($ciclo->getEstadoCiclo() == 1) {
+                    echo "Activo";
+                } else {
+                    echo "Inactivo";
+                }
+                echo "</td>";
+
+                echo "<td>";
+                echo "<form method='post' action='../business/cicloActions.php' style='display:inline;'>";
                 echo "<input type='hidden' name='idCiclo' value='" . $ciclo->getIdCiclo() . "'>";
                 echo "<input type='submit' value='Eliminar' name='delete'>";
                 echo "</form>";
 
-                echo "<form method='post' action='editCiclo.php'>";
+                echo "<form method='post' action='editCiclo.php' style='display:inline;'>";
                 echo "<input type='hidden' name='idCiclo' value='" . $ciclo->getIdCiclo() . "'>";
                 echo "<input type='submit' value='Editar' name='update'>";
                 echo "</form>";
-
                 echo "</td>";
-                echo "</tr>";
 
-                ?>
-            </tbody>
-        </table>
-    </div>
+                echo "</tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
     <div>
 
-        <form id="createForm" method="post"  enctype="multipart/form-data" action="../business/cicloActions.php">
+        <form id="createForm" method="post" enctype="multipart/form-data" action="../business/cicloActions.php">
 
             <label for="nombre">Nombre</label><br>
             <input type="text" name="nombre" required><br>
@@ -77,7 +79,7 @@
                 <option value="cuatrimestral">Cuatrimestral</option>
                 <option value="semestral">Semestral</option>
             </select><br>
-            
+
             <label for="fechaInicio">Fecha de inicio</label><br>
             <input type="date" name="fechaInicio" required><br>
 

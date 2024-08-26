@@ -19,6 +19,9 @@
     <b>Link to the junta page: </b>
     <a href="view/juntaView.php">Junta</a> <br>
 
+    <b>Link to the partitura page: </b>
+    <a href="view/partiruaView.php">Partitura</a> <br>
+
 
     
     

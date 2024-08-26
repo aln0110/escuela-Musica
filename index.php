@@ -22,6 +22,9 @@
     <b>Link to the partitura page: </b>
     <a href="view/partiruaView.php">Partitura</a> <br>
 
+    <b>Link to the ciclo page: </b>
+    <a href="view/cicloView.php">Ciclo</a><br>
+
 
     
     

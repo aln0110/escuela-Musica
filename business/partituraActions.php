@@ -33,25 +33,6 @@ if(isset($_POST['create'])){
         header("location: ../view/partituraView.php?error=missingFields");
     }
     
-}  else if (isset($_GET['id'])) {
-    $idPartitura = $_GET['id'];
-    $partituraBusiness = new PartituraBusiness();
-    $partitura = $partituraBusiness->getPartitura($idPartitura);
-
-    if ($partitura) {
-        $pdfContent = $partitura->getPdfPartitura(); 
-        $fileName = $partitura->getNombrePartitura() . '.pdf'; 
-
-
-        header('Content-Type: application/pdf');
-        header('Content-Disposition: attachment; filename="' . $fileName . '"');
-        header('Content-Length: ' . strlen($pdfContent));
-
-        echo $pdfContent;
-        exit;
-    } else {
-        echo "Partitura not found.";
-    }
 } else if(isset($_POST['update'])){
 
     if (isset($_POST['id']) && isset($_POST['nombre']) && isset($_POST['instrumento']) && isset($_POST['estado']) ) {
@@ -122,6 +103,25 @@ if(isset($_POST['create'])){
     } else {
         header("location: ../view/partituraView.php?error=missingFields");
     }   
+}   else if (isset($_POST['id'])) {
+    $idPartitura = $_GET['id'];
+    $partituraBusiness = new PartituraBusiness();
+    $partitura = $partituraBusiness->getPartitura($idPartitura);
+
+    if ($partitura) {
+        $pdfContent = $partitura->getPdfPartitura(); 
+        $fileName = $partitura->getNombrePartitura() . '.pdf'; 
+
+
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: attachment; filename="' . $fileName . '"');
+        header('Content-Length: ' . strlen($pdfContent));
+
+        echo $pdfContent;
+        exit;
+    } else {
+        echo "Partitura not found.";
+    }
 }
 
 

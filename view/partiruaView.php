@@ -33,12 +33,9 @@
                     echo "<td>" . ($partitura->getEstadoPartitura() ? 'Activo' : 'Inactivo') . "</td>";
 
                     echo "<td>";
-                    echo "<form method='get' action='../business/partituraActions.php'>";
-                    echo "<input type='hidden' name='id' value='" . $partitura->getIdPartitura() . "'>";
-                    echo "<input type='submit' value='Descargar'>";
-                    echo "</form>";
 
-                    echo "<form method='update' action='../business/partituraActions.php'>";
+
+                    echo "<form method='update' action='partituraEdit.php'>";
                     echo "<input type='hidden' name='id' value='" . $partitura->getIdPartitura() . "'>";
                     echo "<input type='submit' value='Actualizar'>";
                     echo "</form>";
@@ -46,6 +43,11 @@
                     echo "<form method='delete' action='../business/partituraActions.php'>";
                     echo "<input type='hidden' name='id' value='" . $partitura->getIdPartitura() . "'>";
                     echo "<input type='submit' value='Eliminar'>";
+                    echo "</form>";
+
+                    echo "<form method='post' action='../business/partituraActions.php'>";
+                    echo "<input type='hidden' name='id' value='" . $partitura->getIdPartitura() . "'>";
+                    echo "<input type='submit' value='Descargar'>";
                     echo "</form>";
                     
 

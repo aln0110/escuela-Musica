@@ -38,11 +38,11 @@
                         }
                         echo "</td>";
                         echo "<td>";
-                        echo "<form method='post' action='../business/escuelaActions.php'>";
+                        echo "<form method='post' action='../business/escuelaActions.php' style='display:inline;'> ";
                         echo "<input type='hidden' name='idEscuelaMusica' value='" . $escuela->getIdEscuelaMusica() . "'>";
                         echo "<input type='submit' value='Eliminar' name='delete'>";
                         echo "</form>";
-                        echo "<form method='get' action='editEscuelaView.php'>";
+                        echo "<form method='get' action='editEscuelaView.php' style='display:inline;'> ";
                         echo "<input type='hidden' name='id' value='" . $escuela->getIdEscuelaMusica() . "'>";
                         echo "<input type='submit' value='Editar'>";
                         echo "</form>";

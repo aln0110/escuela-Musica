@@ -35,17 +35,17 @@
                     echo "<td>";
 
 
-                    echo "<form method='update' action='partituraEdit.php'>";
+                    echo "<form method='update' action='partituraEdit.php' style='display:inline;'> ";
                     echo "<input type='hidden' name='id' value='" . $partitura->getIdPartitura() . "'>";
                     echo "<input type='submit' value='Actualizar' name='update'>";
                     echo "</form>";
 
-                    echo "<form method='post' action='../business/partituraActions.php'>";
+                    echo "<form method='post' action='../business/partituraActions.php' style='display:inline;'> ";
                     echo "<input type='hidden' name='id' value='" . $partitura->getIdPartitura() . "'>";
                     echo "<input type='submit' value='Eliminar' name='delete'>";
                     echo "</form>";
 
-                    echo "<form method='post' action='../business/partituraActions.php'>";
+                    echo "<form method='post' action='../business/partituraActions.php' style='display:inline;'> ";
                     echo "<input type='hidden' name='id' value='" . $partitura->getIdPartitura() . "'>";
                     echo "<input type='submit' value='Descargar' name='download'>";
                     echo "</form>";

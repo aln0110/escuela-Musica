@@ -27,7 +27,8 @@
         </table>
     </div>
     <div>
-        <form id="createForm" method="post"  enctype="multipart/form-data" action="">
+
+        <form id="createForm" method="post"  enctype="multipart/form-data" action="../business/cicloActions.php">
 
             <label for="nombre">Nombre</label><br>
             <input type="text" name="nombre" required><br>
@@ -49,11 +50,11 @@
             <input type="date" name="fechaFin" required><br>
 
             <label for="estado">Estado</label><br>
-            <select name="juntaestado" id="estado">
+            <select name="estado" id="estado">
                 <option value="true">Verdadero</option>
                 <option value="false">Falso</option>
             </select><br>
-            <input type="submit" value="Crear">
+            <input type="submit" value="Crear" name="create">
         </form>
     </div>
 

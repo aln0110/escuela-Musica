@@ -79,7 +79,8 @@
         
             <input type="submit" value="Crear" name="create">
             
-        </form>
+        </form><br>
+        <a href="../index.php">index</a>
     </div>
 
 </body>

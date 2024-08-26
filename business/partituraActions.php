@@ -103,7 +103,7 @@ if(isset($_POST['create'])){
     } else {
         header("location: ../view/partituraView.php?error=missingFields");
     }   
-}   else if (isset($_POST['id'])) {
+}   else if (isset($_POST['download'])) {
     $idPartitura = $_GET['id'];
     $partituraBusiness = new PartituraBusiness();
     $partitura = $partituraBusiness->getPartitura($idPartitura);

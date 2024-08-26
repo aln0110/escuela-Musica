@@ -118,7 +118,9 @@
 
             <input type="submit" value="Crear" name="create"><br>
 
-        </form>
+        </form><br>
+        <a href="../index.php">index</a>
+
 
     </div>
 

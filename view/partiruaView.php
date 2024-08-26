@@ -37,17 +37,17 @@
 
                     echo "<form method='update' action='partituraEdit.php'>";
                     echo "<input type='hidden' name='id' value='" . $partitura->getIdPartitura() . "'>";
-                    echo "<input type='submit' value='Actualizar'>";
-                    echo "</form>";
-
-                    echo "<form method='delete' action='../business/partituraActions.php'>";
-                    echo "<input type='hidden' name='id' value='" . $partitura->getIdPartitura() . "'>";
-                    echo "<input type='submit' value='Eliminar'>";
+                    echo "<input type='submit' value='Actualizar' name='update'>";
                     echo "</form>";
 
                     echo "<form method='post' action='../business/partituraActions.php'>";
                     echo "<input type='hidden' name='id' value='" . $partitura->getIdPartitura() . "'>";
-                    echo "<input type='submit' value='Descargar'>";
+                    echo "<input type='submit' value='Eliminar' name='delete'>";
+                    echo "</form>";
+
+                    echo "<form method='post' action='../business/partituraActions.php'>";
+                    echo "<input type='hidden' name='id' value='" . $partitura->getIdPartitura() . "'>";
+                    echo "<input type='submit' value='Descargar' name='download'>";
                     echo "</form>";
                     
 
@@ -113,7 +113,8 @@
             </select><br>    
 
             <input type="submit" value="Crear" name="create">
-        </form>
+        </form><br>
+        <a href="../index.php">index</a>
     </div>
 </body>
 

@@ -37,7 +37,12 @@ class partituraBusiness
         return $this->dataPartitura->updatePartitura($partitura);
     }
 
-    
+    public function logicalDelete($idPartitura)
+    {
+        return $this->dataPartitura->logicalDeletePartitura($idPartitura);
+    }
+
+
 }
 
 

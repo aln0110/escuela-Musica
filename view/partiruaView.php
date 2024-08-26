@@ -20,7 +20,41 @@
                 </tr>
             </thead>
             <tbody>
-                <td></td>
+                <?php
+                include '../business/partituraBusiness.php';
+                $partituraBusiness = new PartituraBusiness();
+                $partituras = $partituraBusiness->getPartituras();
+
+                foreach ($partituras as $partitura) {
+                    echo "<tr>";
+                    echo "<td>" . $partitura->getIdPartitura() . "</td>";
+                    echo "<td>" . $partitura->getNombrePartitura()  . "</td>";
+                    echo "<td>" . $partitura->getInstrumentoPartitura() . "</td>";
+                    echo "<td>" . ($partitura->getEstadoPartitura() ? 'Activo' : 'Inactivo') . "</td>";
+
+                    echo "<td>";
+                    echo "<form method='get' action='../business/partituraActions.php'>";
+                    echo "<input type='hidden' name='id' value='" . $partitura->getIdPartitura() . "'>";
+                    echo "<input type='submit' value='Descargar'>";
+                    echo "</form>";
+
+                    echo "<form method='update' action='../business/partituraActions.php'>";
+                    echo "<input type='hidden' name='id' value='" . $partitura->getIdPartitura() . "'>";
+                    echo "<input type='submit' value='Actualizar'>";
+                    echo "</form>";
+
+                    echo "<form method='delete' action='../business/partituraActions.php'>";
+                    echo "<input type='hidden' name='id' value='" . $partitura->getIdPartitura() . "'>";
+                    echo "<input type='submit' value='Eliminar'>";
+                    echo "</form>";
+                    
+
+                    echo "</td>";
+
+                    echo "</tr>";
+                }
+
+                ?>
 
             </tbody>
         </table>

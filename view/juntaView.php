@@ -55,7 +55,7 @@
                     echo "<input type='submit' value='Eliminar' name='delete'>";
                     echo "</form>";
 
-                    echo "<form method='get' action='editJunta.php' style='display:inline;'> ";
+                    echo "<form method='get' action='editJunta.php' style='display:inline;'>";
                     echo "<input type='hidden' name='idjunta' value='" . $junta->getIdjunta() . "'>";
                     echo "<input type='submit' value='Editar' name='edit'>";
                     echo "</form>";

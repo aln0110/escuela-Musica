@@ -88,8 +88,8 @@
 
             <label for="estado">Estado</label><br>
             <select name="estado" id="estado">
-                <option value="1">Verdadero</option>
-                <option value="0">Falso</option>
+                <option value="true">Verdadero</option>
+                <option value="false">Falso</option>
             </select><br>
             <input type="submit" value="Crear" name="create">
         </form>

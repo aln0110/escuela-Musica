@@ -11,7 +11,7 @@ if(isset($_POST['create'])){
         $tipo = $_POST['tipo'];
         $fechaInicio = $_POST['fechaInicio'];
         $fechaFin = $_POST['fechaFin'];
-        $estado = (int)$_POST['estado'];
+        $estado = $_POST['estado'] === 'true' ? 1 : 0;
 
         
         if (strlen($nombre) > 0 && strlen($fechaInicio) > 0 && strlen($fechaFin) > 0 && strlen($estado) > 0 && strlen($descripcion) > 0 && strlen($tipo) > 0) {

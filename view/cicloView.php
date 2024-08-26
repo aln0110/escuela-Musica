@@ -19,6 +19,7 @@
                 <th>Fecha Inicio</th>
                 <th>Fecha Fin</th>
                 <th>Estado</th>
+                <th>Accion</th>
             </thead>
             <tbody>
                 <?php
@@ -28,19 +29,19 @@
                 foreach ($ciclos as $ciclo) {
                     echo "<tr>";
                     echo "<td>" . $ciclo->getIdCiclo() . "</td>";
-                    echo "<td>" . $ciclo->getNombre() . "</td>";
-                    echo "<td>" . $ciclo->getDescripcion() . "</td>";
-                    echo "<td>" . $ciclo->getTipo() . "</td>";
-                    echo "<td>" . $ciclo->getFechaInicio() . "</td>";
-                    echo "<td>" . $ciclo->getFechaFin() . "</td>";
+                    echo "<td>" . $ciclo->getNombreCiclo() . "</td>";
+                    echo "<td>" . $ciclo->getDescripcionCiclo() . "</td>";
+                    echo "<td>" . $ciclo->getTipoCiclo() . "</td>";
+                    echo "<td>" . $ciclo->getFechaInicioCiclo() . "</td>";
+                    echo "<td>" . $ciclo->getFechaFinCiclo() . "</td>";
                     echo "<td>";
-                    if ($ciclo->getEstado() == 1) {
+                    if ($ciclo->getEstadoCiclo() == 1) {
                         echo "Activo";
                     } else {
                         echo "Inactivo";
                     }
                     echo "</td>";
-                    echo "</tr>";
+                    
                 }
                 echo "<td>";
                 echo "<form method='post' action='../business/cicloActions.php'>";
@@ -54,6 +55,7 @@
                 echo "</form>";
 
                 echo "</td>";
+                echo "</tr>";
 
                 ?>
             </tbody>

@@ -21,8 +21,41 @@
                 <th>Estado</th>
             </thead>
             <tbody>
-                <td>Holi</td>
-                <td>Jiji</td>
+                <?php
+                include '../business/cicloBusiness.php';
+                $cicloBusiness = new CicloBusiness();
+                $ciclos = $cicloBusiness->getCiclos();
+                foreach ($ciclos as $ciclo) {
+                    echo "<tr>";
+                    echo "<td>" . $ciclo->getIdCiclo() . "</td>";
+                    echo "<td>" . $ciclo->getNombre() . "</td>";
+                    echo "<td>" . $ciclo->getDescripcion() . "</td>";
+                    echo "<td>" . $ciclo->getTipo() . "</td>";
+                    echo "<td>" . $ciclo->getFechaInicio() . "</td>";
+                    echo "<td>" . $ciclo->getFechaFin() . "</td>";
+                    echo "<td>";
+                    if ($ciclo->getEstado() == 1) {
+                        echo "Activo";
+                    } else {
+                        echo "Inactivo";
+                    }
+                    echo "</td>";
+                    echo "</tr>";
+                }
+                echo "<td>";
+                echo "<form method='post' action='../business/cicloActions.php'>";
+                echo "<input type='hidden' name='idCiclo' value='" . $ciclo->getIdCiclo() . "'>";
+                echo "<input type='submit' value='Eliminar' name='delete'>";
+                echo "</form>";
+
+                echo "<form method='post' action='editCiclo.php'>";
+                echo "<input type='hidden' name='idCiclo' value='" . $ciclo->getIdCiclo() . "'>";
+                echo "<input type='submit' value='Editar' name='update'>";
+                echo "</form>";
+
+                echo "</td>";
+
+                ?>
             </tbody>
         </table>
     </div>

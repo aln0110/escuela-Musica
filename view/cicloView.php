@@ -51,7 +51,7 @@
                 echo "<input type='submit' value='Eliminar' name='delete'>";
                 echo "</form>";
 
-                echo "<form method='post' action='editCiclo.php' style='display:inline;'>";
+                echo "<form method='get' action='cicloEdit.php' style='display:inline;'>";
                 echo "<input type='hidden' name='idCiclo' value='" . $ciclo->getIdCiclo() . "'>";
                 echo "<input type='submit' value='Editar' name='update'>";
                 echo "</form>";

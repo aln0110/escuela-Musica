@@ -25,6 +25,9 @@
     <b>Link to the ciclo page: </b>
     <a href="view/cicloView.php">Ciclo</a><br>
 
+    b>Link to the instrumento page: </b>
+    <a href="view/instrumentoView.php">Instrumento</a><br>
+
 
     
     

@@ -9,7 +9,7 @@ class  escuelaData extends Data
     {
 
 
-        $sql = "INSERT INTO tbescuelamusica (nombreescuelamusica, cedulajuridicaescuelamusica, correoescuelamusica, telefonoescuelamusica, estadoescuelamusica) VALUES
+        $sql = "INSERT INTO tbescuelamusica (tbescuelamusicanombre, tbescuelamusicacedulajuridica, tbescuelamusicacorreo, tbescuelamusicatelefono, tbescuelamusicaestado) VALUES
        ('" . $EscuelaMusica->getNombre() . "', '" . $EscuelaMusica->getCedulaJuridica() . "', '" . $EscuelaMusica->getCorreo() . "', '" . $EscuelaMusica->getTelefono() . "', '" . $EscuelaMusica->getEstado() . "')";
 
         $result = $this->conn->query($sql);
@@ -24,42 +24,42 @@ class  escuelaData extends Data
         mysqli_close($this->conn);
         $escuelas = [];
         while ($row = $result->fetch_assoc()) {
-            $escuela = new EscuelaMusica($row["idescuelamusica"], $row["nombreescuelamusica"], $row["cedulajuridicaescuelamusica"], $row["correoescuelamusica"], $row["telefonoescuelamusica"], $row["estadoescuelamusica"]);
+            $escuela = new EscuelaMusica($row["tbescuelamusicaid"], $row["tbescuelamusicanombre"], $row["tbescuelamusicacedulajuridica"], $row["tbescuelamusicacorreo"], $row["tbescuelamusicatelefono"], $row["tbescuelamusicaestado"]);
             array_push($escuelas, $escuela);
         }
 
         return $escuelas;
     }
 
-    public function getEscuela($idEscuelaMusica)
+    public function getEscuela($tbescuelamusicaid)
     {
-        $sql = "SELECT * FROM tbescuelamusica WHERE idescuelamusica = $idEscuelaMusica";
+        $sql = "SELECT * FROM tbescuelamusica WHERE tbescuelamusicaid = $tbescuelamusicaid";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         while ($row = $result->fetch_assoc()) {
-            $escuela = new EscuelaMusica($row["idescuelamusica"], $row["nombreescuelamusica"], $row["cedulajuridicaescuelamusica"], $row["correoescuelamusica"], $row["telefonoescuelamusica"], $row["estadoescuelamusica"]);
+            $escuela = new EscuelaMusica($row["tbescuelamusicaid"], $row["tbescuelamusicanombre"], $row["tbescuelamusicacedulajuridica"], $row["tbescuelamusicacorreo"], $row["tbescuelamusicatelefono"], $row["tbescuelamusicaestado"]);
         }
         return $escuela;
     }
 
     public function updateEscuela($escuelaMusica)
     {
-        $sql = "UPDATE tbescuelamusica SET nombreescuelamusica = '" . $escuelaMusica->getNombre() . "', cedulajuridicaescuelamusica = '" . $escuelaMusica->getCedulaJuridica() . "', correoescuelamusica = '" . $escuelaMusica->getCorreo() . "', telefonoescuelamusica = '" . $escuelaMusica->getTelefono() . "', estadoescuelamusica = '" . $escuelaMusica->getEstado() . "' WHERE idescuelamusica = " . $escuelaMusica->getIdEscuelaMusica();
+        $sql = "UPDATE tbescuelamusica SET tbescuelamusicanombre = '" . $escuelaMusica->getNombre() . "', tbescuelamusicacedulajuridica = '" . $escuelaMusica->getCedulaJuridica() . "', tbescuelamusicacorreo = '" . $escuelaMusica->getCorreo() . "', tbescuelamusicatelefono = '" . $escuelaMusica->getTelefono() . "', tbescuelamusicaestado = '" . $escuelaMusica->getEstado() . "' WHERE tbescuelamusicaid = " . $escuelaMusica->getIdEscuelaMusica();
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         return $result;
     }
 
-    public function deleteEscuela($idEscuelaMusica)
+    public function deleteEscuela($tbescuelamusicaid)
     {
-        $sql = "DELETE FROM tbescuelamusica WHERE idescuelamusica = $idEscuelaMusica";
+        $sql = "DELETE FROM tbescuelamusica WHERE tbescuelamusicaid = $tbescuelamusicaid";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         return $result;
     }
 
-    public function  logicalDelte($idEscuelaMusica){
-        $sql = "UPDATE tbescuelamusica SET estadoescuelamusica = 'False' WHERE idescuelamusica = $idEscuelaMusica";
+    public function  logicalDelte($tbescuelamusicaid){
+        $sql = "UPDATE tbescuelamusica SET tbescuelamusicaestado = 'False' WHERE tbescuelamusicaid = $tbescuelamusicaid";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         return $result;

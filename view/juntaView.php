@@ -74,7 +74,7 @@
 
 
     <div>
-        <form id="createForm" method="post" enctype="multipart/form-data" action="../business/juntaActions.php">
+    <form id="createForm" method="post" enctype="multipart/form-data" action="../business/juntaActions.php">
             <label for="nombre"> Nombre</label><br>
             <input type="text" name="nombrejunta" required><br>
 
@@ -83,8 +83,8 @@
                 <option value="Cedula">Cedula</option>
                 <option value="Pasaporte">Pasaporte</option>
                 <option value="Dimex">Dimex</option>
-            </select><br>    
-           
+            </select><br>
+
             <label for="cedula">Cedula</label><br>
             <input type="text" name="cedulajunta" required><br>
 
@@ -105,24 +105,30 @@
             <input type="text" name="telefono" required><br>
 
             <label for="fechaInicio">Fecha inicio</label><br>
-            <input type="date" name="fechaIniciojunta" required><br>
+            <input type="date" id="fechaIniciojunta" name="fechaIniciojunta" required><br>
 
             <label for="fechaFin">Fecha fin</label><br>
-            <input type="date" name="fechaFinjunta" required><br>
-
-            <label for="estado">Estado</label><br>
-            <select name="juntaestado" id="estado">
-                <option value="true">Verdadero</option>
-                <option value="false">Falso</option>
-            </select><br>
+            <input type="date" id="fechaFinjunta" name="fechaFinjunta" required><br>
 
             <input type="submit" value="Crear" name="create"><br>
-
         </form><br>
         <a href="../index.php">index</a>
 
 
     </div>
+
+    <script>
+
+        const today = new Date().toISOString().split('T')[0];
+
+
+        const fechaInicio = document.getElementById('fechaIniciojunta');
+        fechaInicio.setAttribute('max', today); 
+
+
+        const fechaFin = document.getElementById('fechaFinjunta');
+        fechaFin.setAttribute('min', today); 
+    </script>
 
 
 </body>

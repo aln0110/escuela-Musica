@@ -45,26 +45,38 @@
             echo "    <option value=\"Padre\">Padre</option>";
             echo "</select><br>";
 
-            echo "<label for='fechainiciojunta'>Fecha inicio:</label>"; echo "<br>";
-            echo "<input type='date' name='fechainiciojunta' value='" . $junta->getFechainiciojunta() . "' required>"; echo "<br>";
+            echo "<label for='correo'>Correo:</label>"; echo "<br>";
+            echo "<input type='email' name='correo' value='" . $junta->getCorreo() . "' required>"; echo "<br>";
 
-            echo "<label for='fechafinaljunta'>Fecha final:</label>"; echo "<br>";
-            echo "<input type='date' name='fechafinaljunta' value='" . $junta->getFechafinaljunta() . "' required>"; echo "<br>";
-
-            echo "<label for='juntaactivo'>Estado:</label>"; echo "<br>";
-            echo "<select name=\"juntaactivo\" id=\"juntaactivo\">";
-            echo "    <option value=\"true\">Verdadero</option>";
-            echo "    <option value=\"false\">Falso</option>";
-            echo "</select> <br>";
-
-            echo "<input type='submit' value='Actualizar' name='update'>"; echo "<br>";
-        
+            echo "<label for='telefono'>Telefono:</label>"; echo "<br>";
+            echo "<input type='text' name='telefono' value='" . $junta->getTelefono() . "' required>"; echo "<br>";
 
             ?>
+            <label for="fechaInicio">Fecha inicio</label><br>
+            <input type="date" id="fechaIniciojunta" name="fechaIniciojunta" required><br>
+
+            <label for="fechaFin">Fecha fin</label><br>
+            <input type="date" id="fechaFinjunta" name="fechaFinjunta" required><br>
+
+
+            <input type='submit' value='Actualizar' name='update'> <br>
          
         </form>
 
     </div>
+    <script>
+
+        const today = new Date().toISOString().split('T')[0];
+
+
+        const fechaInicio = document.getElementById('fechaIniciojunta');
+        fechaInicio.setAttribute('max', today); 
+
+
+        const fechaFin = document.getElementById('fechaFinjunta');
+        fechaFin.setAttribute('min', today); 
+    </script>
+
     
 </body>
 </html>

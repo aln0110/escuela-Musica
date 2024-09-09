@@ -3,14 +3,13 @@ include 'escuelaBusiness.php';
 
 if (isset($_POST['create'])) {
 
-    if (isset($_POST['nombre']) && isset($_POST['cedulaJuridica']) && isset($_POST['correo']) && isset($_POST['telefono']) 
-         && isset($_POST['estado'])) {
+    if (isset($_POST['nombre']) && isset($_POST['cedulaJuridica']) && isset($_POST['correo']) && isset($_POST['telefono']) ) {
         
         $nombre = $_POST['nombre'];
         $cedulaJuridica = $_POST['cedulaJuridica'];
         $correo = $_POST['correo'];
         $telefono = $_POST['telefono'];
-        $estado = $_POST['estado'] === 'true' ? 1 : 0;
+        $estado = true;
 
         if (strlen($nombre) > 0 && strlen($cedulaJuridica) > 0 && strlen($correo) > 0 
             && strlen($telefono) > 0 && strlen($estado) > 0) {
@@ -33,7 +32,7 @@ if (isset($_POST['create'])) {
 } else if (isset($_POST['update'])) {
 
     if (isset($_POST['idEscuelaMusica']) && isset($_POST['nombre']) && isset($_POST['cedulaJuridica']) && isset($_POST['correo']) 
-        && isset($_POST['telefono']) && isset($_POST['estado'])) {
+        && isset($_POST['telefono']) ) {
         
         $idEscuelaMusica = $_POST['idEscuelaMusica'];
         $nombre = $_POST['nombre'];

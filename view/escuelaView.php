@@ -65,17 +65,11 @@
             <input type="text" name="cedulaJuridica" id="cedulaJuridica"><br>
 
             <label for="correo">Correo</label><br>
-            <input type="text" name="correo" id="correo"><br>
+            <input type="email" name="correo" id="correo"><br>
 
             <label for="telefono">Telefono</label><br>
             <input type="text" name="telefono" id="telefono"><br>
 
-
-            <label for="estado">Estado</label>
-            <select name="estado" id="estado">
-                <option value="true">Verdadero</option>
-                <option value="false">Falso</option>
-            </select> <br>
         
             <input type="submit" value="Crear" name="create">
             

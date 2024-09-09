@@ -3,7 +3,7 @@ include "juntaBusiness.php";
 
 if (isset($_POST['create'])) {
     if (isset($_POST['nombrejunta']) && isset($_POST['cedulajunta']) && isset($_POST['juntapuesto']) 
-        && isset($_POST['fechaIniciojunta']) && isset($_POST['fechaFinjunta']) && isset($_POST['juntaestado']) && isset($_POST['correo'])&& isset($_POST['telefono']) && isset($_POST['tipoIdentificacion'])) {
+        && isset($_POST['fechaIniciojunta']) && isset($_POST['fechaFinjunta'])  && isset($_POST['correo'])&& isset($_POST['telefono']) && isset($_POST['tipoIdentificacion'])) {
         
         $nombrejunta = $_POST['nombrejunta'];
         $indentificacionjunta = $_POST['tipoIdentificacion'];
@@ -13,7 +13,7 @@ if (isset($_POST['create'])) {
         $telefono = $_POST['telefono'];
         $fechainiciojunta = $_POST['fechaIniciojunta'];
         $fechafinaljunta = $_POST['fechaFinjunta'];
-        $juntaactivo = $_POST['juntaestado'] === 'true' ? 1 : 0;
+        $juntaactivo = true;
         
 
         if (strlen($nombrejunta) > 0 && strlen($cedulajunta) > 0 && strlen($juntapuesto) > 0 

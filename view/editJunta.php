@@ -52,6 +52,8 @@
             echo "<input type='text' name='telefono' value='" . $junta->getTelefono() . "' required>"; echo "<br>";
 
             ?>
+      
+            
             <label for="fechaInicio">Fecha inicio</label><br>
             <input type="date" id="fechaIniciojunta" name="fechaIniciojunta" required><br>
 

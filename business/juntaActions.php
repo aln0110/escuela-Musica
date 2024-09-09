@@ -11,15 +11,15 @@ if (isset($_POST['create'])) {
         $juntapuesto = $_POST['juntapuesto'];
         $correo = $_POST['correo'];
         $telefono = $_POST['telefono'];
-        $fechainiciojunta = $_POST['fechaIniciojunta'];
+        $fechaIniciojunta = $_POST['fechaIniciojunta'];
         $fechafinaljunta = $_POST['fechaFinjunta'];
         $juntaactivo = true;
         
 
         if (strlen($nombrejunta) > 0 && strlen($cedulajunta) > 0 && strlen($juntapuesto) > 0 
-            && strlen($fechainiciojunta) > 0 && strlen($fechafinaljunta) > 0) {
+            && strlen($fechaIniciojunta) > 0 && strlen($fechafinaljunta) > 0) {
             
-            $junta = new Junta(0, $nombrejunta, $cedulajunta, $juntapuesto, $fechainiciojunta, $fechafinaljunta, $juntaactivo, $indentificacionjunta, $correo, $telefono);
+            $junta = new Junta(0, $nombrejunta, $cedulajunta, $juntapuesto, $fechaIniciojunta, $fechafinaljunta, $juntaactivo, $indentificacionjunta, $correo, $telefono);
             $juntaBusiness = new JuntaBusiness();
             $result = $juntaBusiness->insertJunta($junta);
 
@@ -36,8 +36,8 @@ if (isset($_POST['create'])) {
     }
 }
  else if (isset($_POST['update'])) {
-    if (isset($_POST['idjunta']) && isset($_POST['nombrejunta']) && isset($_POST['cedulajunta']) && isset($_POST['juntapuesto']) 
-        && isset($_POST['fechainiciojunta']) && isset($_POST['fechafinaljunta']) && isset($_POST['juntaactivo']) && isset($_POST['correo'])&& isset($_POST['telefono']) && isset($_POST['tipoIdentificacion'])) {
+    if (isset($_POST['nombrejunta']) && isset($_POST['cedulajunta']) && isset($_POST['juntapuesto']) 
+        && isset($_POST['fechaIniciojunta']) && isset($_POST['fechaFinjunta'])  && isset($_POST['correo'])&& isset($_POST['telefono']) && isset($_POST['tipoIdentificacion'])) {
         
         $idjunta = $_POST['idjunta'];
         $nombrejunta = $_POST['nombrejunta'];
@@ -46,14 +46,14 @@ if (isset($_POST['create'])) {
         $juntapuesto = $_POST['juntapuesto'];
         $correo = $_POST['correo'];
         $telefono = $_POST['telefono'];
-        $fechainiciojunta = $_POST['fechainiciojunta'];
-        $fechafinaljunta = $_POST['fechafinaljunta'];
-        $juntaactivo = $_POST['juntaactivo'] === 'true' ? 1 : 0;
+        $fechaIniciojunta = $_POST['fechaIniciojunta'];
+        $fechafinaljunta = $_POST['fechaFinjunta']; 
+        $juntaactivo = true;
 
         if (strlen($idjunta) > 0 && strlen($nombrejunta) > 0 && strlen($cedulajunta) > 0 && strlen($juntapuesto) > 0 
-            && strlen($fechainiciojunta) > 0 && strlen($fechafinaljunta) > 0) {
+            && strlen($fechaIniciojunta) > 0 && strlen($fechafinaljunta) > 0) {
             
-            $junta = new Junta($idjunta, $nombrejunta, $cedulajunta, $juntapuesto, $fechainiciojunta, $fechafinaljunta, $juntaactivo, $indentificacionjunta, $correo, $telefono);
+            $junta = new Junta($idjunta, $nombrejunta, $cedulajunta, $juntapuesto, $fechaIniciojunta, $fechafinaljunta, $juntaactivo, $indentificacionjunta, $correo, $telefono);
             $juntaBusiness = new JuntaBusiness();
             $result = $juntaBusiness->updateJunta($junta);
 

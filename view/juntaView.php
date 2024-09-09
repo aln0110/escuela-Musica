@@ -88,51 +88,38 @@
 
                 $juntaBusiness = new JuntaBusiness();
                 $juntas = $juntaBusiness->getJuntas(); 
-                $presidente="";
-                $vicepresidente="";
-                $secretario="";
-                $tesorero="";
-                $vocal="";
-                $padre="";
+                $presidente="No disponible";
+                $vicepresidente="No disponible";
+                $secretario="No disponible";
+                $tesorero="No disponible";
+                $vocal="No disponible";
+                $padre="No disponible";
 
                 foreach ($juntas as $junta) {
 
                     if ($junta->getJuntapuesto() == "Presidente" && $junta->getJuntaactivo() == 1) {
                         $presidente= $junta->getNombrejunta();
-                    } else {
-                        $presidente= "No hay presidente";
-                    }
+                    } 
 
                     if ($junta->getJuntapuesto() == "Vicepresidente" && $junta->getJuntaactivo() == 1) {
                         $vicepresidente= $junta->getNombrejunta();
-                    } else {
-                        $vicepresidente= "No hay vicepresidente";
                     }
 
                     if ($junta->getJuntapuesto() == "Secretario" && $junta->getJuntaactivo() == 1) {
                         $secretario= $junta->getNombrejunta();
-                    } else {
-                        $secretario= "No hay secretario";
-                    }
+                    } 
 
                     if ($junta->getJuntapuesto() == "Tesorero" && $junta->getJuntaactivo() == 1) {
                         $tesorero= $junta->getNombrejunta();
-                    } else {
-                        $tesorero= "No hay tesorero";
-                    }
+                    } 
 
                     if ($junta->getJuntapuesto() == "Vocal" && $junta->getJuntaactivo() == 1) {
                         $vocal= $junta->getNombrejunta();
-                    }else {
-                        $vocal= "No hay vocal";
                     }
 
                     if ($junta->getJuntapuesto() == "Padre" && $junta->getJuntaactivo() == 1) {
                         $padre= $junta->getNombrejunta();
-                    }else {
-                        $padre= "No hay padre";
                     }
-
                 }
                 echo "<tr>";
                 echo "<td>" . $presidente . "</td>";

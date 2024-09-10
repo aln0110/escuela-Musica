@@ -81,19 +81,27 @@
             </select><br>
 
             <label for="fechaInicio">Fecha de inicio</label><br>
-            <input type="date" name="fechaInicio" required><br>
+            <input type="date" name="fechaInicio" id="fechaInicio" required><br>
 
             <label for="fechaFin">Fecha de fin</label><br>
-            <input type="date" name="fechaFin" required><br>
+            <input type="date" name="fechaFin" id="fechaFin" required><br>
 
-            <label for="estado">Estado</label><br>
-            <select name="estado" id="estado">
-                <option value="true">Verdadero</option>
-                <option value="false">Falso</option>
-            </select><br>
             <input type="submit" value="Crear" name="create">
         </form>
     </div>
+
+    <script>
+
+        const today = new Date().toISOString().split('T')[0];
+
+
+        const fechaInicio = document.getElementById('fechaInicio');
+        fechaInicio.setAttribute('max', today); 
+
+
+        const fechaFin = document.getElementById('fechaFin');
+        fechaFin.setAttribute('min', today); 
+    </script>
 
 </body>
 

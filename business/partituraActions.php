@@ -19,23 +19,24 @@ if(isset($_POST['create'])){
             $result = $partituraBusiness->insertPartitura($partitura);
 
             if ($result) {
-                header("location: ../view/partituraView.php?success=inserted");
+                header("location: ../view/partiruaView.php?success=inserted");
             } else {
-                header("location: ../view/partituraView.php?error=dbError");
+                header("location: ../view/partiruaView.php?error=dbError");
             }
         } else {
-            header("location: ../view/partituraView.php?error=emptyField");
+            header("location: ../view/partiruaView.php?error=emptyField");
         }
 
 
     } else {
 
-        header("location: ../view/partituraView.php?error=missingFields");
+        header("location: ../view/partiruaView.php?error=missingFields");
     }
     
-} else if(isset($_POST['update'])){
+}else if(isset($_POST['update'])) {
 
-    if (isset($_POST['id']) && isset($_POST['nombre']) && isset($_POST['instrumento']) && isset($_POST['estado']) ) {
+    // Check if all required POST fields are set
+    if (isset($_POST['id']) && isset($_POST['nombre']) && isset($_POST['instrumento']) && isset($_POST['estado'])) {
 
         $id = $_POST['id'];
         $nombre = $_POST['nombre'];
@@ -46,49 +47,36 @@ if(isset($_POST['create'])){
         $pdfContent = null;
 
         $partituraBusiness = new PartituraBusiness();
+
         $partitura = $partituraBusiness->getPartitura($id);
-        
-        if(isset($_FILES['pdf'])&& $_FILES['pdf']['error'] === UPLOAD_ERR_OK){
+
+        if (isset($_FILES['pdf']) && $_FILES['pdf']['error'] === UPLOAD_ERR_OK) {
             $pdfFile = $_FILES['pdf'];
             $pdfContent = file_get_contents($pdfFile['tmp_name']);
-
-            if (strlen($id) > 0 && strlen($nombre) > 0 && strlen($instrumento) > 0 && strlen($estado) > 0) {
-                $partitura = new Partitura($id, $nombre, $instrumento, $pdfContent, $estado);
-                $partituraBusiness = new PartituraBusiness();
-                $result = $partituraBusiness->updatePartitura($partitura);
-    
-                if ($result) {
-                    header("location: ../view/partituraView.php?success=updated");
-                } else {
-                    header("location: ../view/partituraView.php?error=dbError");
-                }
-            } else {
-                header("location: ../view/partituraView.php?error=emptyField");
-            }
-
-          //si el usuario sube un pdf
         } else {
-            if (strlen($id) > 0 && strlen($nombre) > 0 && strlen($instrumento) > 0 && strlen($estado) > 0) {
-                $pdfN = $partitura->getPdfPartitura();
-                $partitura = new Partitura($id, $nombre, $instrumento, $pdfN, $estado);
-                $partituraBusiness = new PartituraBusiness();
-                $result = $partituraBusiness->updatePartitura($partitura);
-    
-                if ($result) {
-                    header("location: ../view/partituraView.php?success=updated");
-                } else {
-                    header("location: ../view/partituraView.php?error=dbError");
-                }
+
+            $pdfContent = $partitura->getPdfPartitura();
+        }
+
+        if (strlen($id) > 0 && strlen($nombre) > 0 && strlen($instrumento) > 0 && strlen($estado) > 0) {
+
+            $partitura = new Partitura($id, $nombre, $instrumento, $pdfContent, $estado);
+            $result = $partituraBusiness->updatePartitura($partitura);
+
+            if ($result) {
+                header("location: ../view/partiruaView.php?success=updated");
             } else {
-                header("location: ../view/partituraView.php?error=emptyField");
+                header("location: ../view/partiruaView.php?error=dbError");
             }
-            //si el usuario no sube un nuevo archivo, se mantiene el mismo
+        } else {
+            header("location: ../view/partiruaView.php?error=emptyField");
         }
 
     } else {
-        header("location: ../view/partituraView.php?error=missingFields");
+        header("location: ../view/partiruaView.php?error=missingFields");
     }
-} else if (isset($_POST['delete'])){
+}
+ else if (isset($_POST['delete'])){
     $idPartitura = $_POST['id'];
     if (strlen($idPartitura) > 0) {
 
@@ -96,12 +84,12 @@ if(isset($_POST['create'])){
         $result = $partituraBusiness->logicalDelete($idPartitura);
 
         if ($result) {
-            header("location: ../view/partituraView.php?success=deleted");
+            header("location: ../view/partiruaView.php?success=deleted");
         } else {
-            header("location: ../view/partituraView.php?error=dbError");
+            header("location: ../view/partiruaView.php?error=dbError");
         }
     } else {
-        header("location: ../view/partituraView.php?error=missingFields");
+        header("location: ../view/partiruaView.php?error=missingFields");
     }   
 }   else if (isset($_POST['download'])) {
     $idPartitura = $_GET['id'];

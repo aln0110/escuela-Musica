@@ -106,11 +106,9 @@
             <label for="pdf">Seleccione el archivo PDF</label><br>
             <input type="file" name="pdf" id="pdf" accept=".pdf" required  onchange="updateFileName()"><br>
 
-            <label for="estado">Estado</label>
-            <select name="estado" id="estado">
-                <option value="true">Activo</option>
-                <option value="false">Inactivo</option>
-            </select><br>    
+             
+            <input type="hidden" name="estado" id="estado" value="true" >
+     
 
             <input type="submit" value="Crear" name="create">
         </form><br>

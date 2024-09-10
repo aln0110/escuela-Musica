@@ -4,14 +4,14 @@ include "cicloBusiness.php";
 
 if(isset($_POST['create'])){
     
-    if (isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['tipo']) && isset($_POST['fechaInicio']) && isset($_POST['fechaFin']) && isset($_POST['estado'])) {
+    if (isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['tipo']) && isset($_POST['fechaInicio']) && isset($_POST['fechaFin']) ) {
 
         $nombre = $_POST['nombre'];
         $descripcion = $_POST['descripcion'];
         $tipo = $_POST['tipo'];
         $fechaInicio = $_POST['fechaInicio'];
         $fechaFin = $_POST['fechaFin'];
-        $estado = $_POST['estado'] === 'true' ? 1 : 0;
+        $estado = 1;
 
         
         if (strlen($nombre) > 0 && strlen($fechaInicio) > 0 && strlen($fechaFin) > 0 && strlen($estado) > 0 && strlen($descripcion) > 0 && strlen($tipo) > 0) {
@@ -47,7 +47,7 @@ if(isset($_POST['create'])){
         header("location: ../view/cicloView.php?error=missingFields");
     }
 } else if (isset($_POST['update'])) {
-    if (isset($_POST['idCiclo']) && isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['tipo']) && isset($_POST['fechaInicio']) && isset($_POST['fechaFin']) && isset($_POST['estado'])) {
+    if (isset($_POST['idCiclo']) && isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['tipo']) && isset($_POST['fechaInicio']) && isset($_POST['fechaFin']) ) {
         $idCiclo = $_POST['idCiclo'];
         $nombre = $_POST['nombre'];
         $descripcion = $_POST['descripcion'];

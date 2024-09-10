@@ -71,7 +71,7 @@
                 <option value="false">Inactivo</option>
             </select><br>
 
-            <input type="submit" value="Crear" name="create">
+            <input type="submit" value="Actualizar" name="update">
 
 
 

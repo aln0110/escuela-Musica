@@ -61,7 +61,7 @@ class dataInstrumento extends Data {
     public function updateInstrumento($instrumento) {
         $sql = "UPDATE tbinstrumento SET tbinstrumentotipo = '" . $instrumento->getTipo() . "', tbinstrumentoinstrumento = '" . $instrumento->getInstrumento() . "', 
         tbinstrumentomarca = '" . $instrumento->getMarca() . "',  tbinstrumentocodigo = '" . $instrumento->getCodigo() . "', tbinstrumentoserie = '" . $instrumento->getSerie() . "', 
-        tbinstrumentouso = " . ($instrumento->getUso() ? '1' : '0') . ", tbinstrumentoactivo = " . ($instrumento->getActivo() ? '1' : '0') . " 
+        tbinstrumentouso = " . $instrumento->getUso() . ", tbinstrumentoactivo = " . $instrumento->getActivo() . " 
         WHERE tbinstrumentoid = " . $instrumento->getId();
 
         $result = $this->conn->query($sql);

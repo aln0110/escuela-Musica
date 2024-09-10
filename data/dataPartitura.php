@@ -24,7 +24,7 @@ class dataPartitura extends Data
         $partituras = [];
 
         while ($row = $result->fetch_assoc()) {
-            
+
             $partitura = new Partitura($row['tbpartituraid'], $row['tbpartituranombre'], $row['tbpartiturainstrumento'], $row['tbpartiturapdf'], $row['tbpartituraestado']);
             array_push($partituras, $partitura);
         }
@@ -56,13 +56,14 @@ class dataPartitura extends Data
         }
         return $partituras;
     }
-
+  
     public function updatePartitura($partitura)
-    {   $pdfContent = file_get_contents($partitura->getPdfPartitura()['tmp_name']);
+    {   
+        $pdfContent = file_get_contents($partitura->getPdfPartitura()['tmp_name']);
         $pdfContentEscaped = mysqli_real_escape_string($this->conn, $pdfContent);
 
         $sql = "UPDATE tbpartitura SET tbpartituranombre = '" . $partitura->getNombrePartitura() . "', tbpartiturainstrumento = '" . $partitura->getInstrumentoPartitura() . "'
-        , tbpartiturapdf = '" . $partitura->getPdfPartitura() . "', tbpartituraestado = '" . $partitura->getEstadoPartitura() . "' WHERE tbpartituraid = " . $partitura->getIdPartitura();
+        , tbpartiturapdf = '" .$pdfContentEscaped . "', tbpartituraestado = '" . $partitura->getEstadoPartitura() . "' WHERE tbpartituraid = " . $partitura->getIdPartitura();
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         return $result;
@@ -84,4 +85,3 @@ class dataPartitura extends Data
         return $result;
     }
 }
-?>

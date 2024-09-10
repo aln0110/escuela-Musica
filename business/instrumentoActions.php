@@ -8,7 +8,7 @@ $instrumentoBusiness = new instrumentoBusiness();
 
 if (isset($_POST['create'])) {
     
-    if (isset($_POST['tipo']) && isset($_POST['instrumento']) && isset($_POST['codigo']) && isset($_POST['serie']) && isset($_POST['uso']) && isset($_POST['activo']) && isset($_POST['marca'])) {
+    if (isset($_POST['tipo']) && isset($_POST['instrumento']) && isset($_POST['codigo']) && isset($_POST['serie'])  && isset($_POST['marca'])) {
         
  
         $tipo = $_POST['tipo'];
@@ -16,8 +16,8 @@ if (isset($_POST['create'])) {
         $marca = $_POST['marca'];
         $codigo = $_POST['codigo'];
         $serie = $_POST['serie'];
-        $uso = $_POST['uso'] === '1' ? 1 : 0;
-        $activo = $_POST['activo'] === '1' ? 1 : 0;
+        $uso = true;
+        $activo = true;
 
 
         if (strlen($tipo) > 0 && strlen($instrumentoName) > 0 && strlen($codigo) > 0 && strlen($serie) > 0) {
@@ -60,7 +60,7 @@ if (isset($_POST['create'])) {
 
 } else if (isset($_POST['update'])) {
     
-    if (isset($_POST['id']) && isset($_POST['tipo']) && isset($_POST['instrumento']) && isset($_POST['codigo']) && isset($_POST['serie']) && isset($_POST['uso']) && isset($_POST['activo'])) {
+    if (isset($_POST['id']) && isset($_POST['tipo']) && isset($_POST['instrumento']) && isset($_POST['codigo']) && isset($_POST['serie']) ) {
         $id = $_POST['id'];
         $tipo = $_POST['tipo'];
         $instrumentoName = $_POST['instrumento'];

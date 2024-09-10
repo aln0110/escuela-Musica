@@ -105,18 +105,6 @@
             <label for="serie">Serie</label><br>
             <input type="text" name="serie" id="serie"><br>
 
-            <label for="uso">Uso</label><br>
-            <select name="uso" id="uso">
-                <option value="1">Sí</option>
-                <option value="0">No</option>
-            </select><br>
-
-
-            <label for="activo"></label>
-            <select name="activo" id="activo">
-                <option value="1">Activo</option>
-                <option value="0">Inactivo</option>
-            </select><br>
 
             <input type="submit" value="Guardar" name="create">
         </form><br>

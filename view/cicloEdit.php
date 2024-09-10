@@ -45,29 +45,40 @@
             echo "    <option value=\"Mensual\">Mensual</option>";
             echo "</select><br>";
 
-            echo "<label for='fechaInicio'>Fecha inicio:</label>";
-            echo "<br>";
-            echo "<input type='date' name='fechaInicio' value='" . $ciclo->getFechaInicioCiclo() . "' required>";
-            echo "<br>";
-
-            echo "<label for='fechaFin'>Fecha fin:</label>";
-            echo "<br>";
-            echo "<input type='date' name='fechaFin' value='" . $ciclo->getFechaFinCiclo() . "' required>";
-            echo "<br>";
-
-            echo "<label for='estado'>Estado:</label>"; echo "<br>";
-            echo "<select name=\"estado\" id=\"estado\">";
-            echo "    <option value=\"true\">Verdadero</option>";
-            echo "    <option value=\"false\">Falso</option>";
-            echo "</select> <br>";
-
-            echo "<input type='submit' value='Actualizar' name='update'>"; echo "<br>";
-
-
             ?>
+
+            <label for='fechaInicio'>Fecha inicio:</label><br>
+            <input type='date' name='fechaInicio' id='fechaInicio' required><br>
+
+            <label for='fechaFin'>Fecha fin:</label><br>
+            <input type='date' name='fechaFin' id='fechaFin' required> <br>
+
+            <label for='estado'>Estado:</label> <br>
+            <select name=estado id="estado">";
+                <option value="true">Verdadero</option>";
+                <option value="false">Falso</option>";
+            </select> <br>
+
+            <input type='submit' value='Actualizar' name='update'>
+            <br>
+
+
+
 
         </form>
     </div>
+
+    <script>
+        const today = new Date().toISOString().split('T')[0];
+
+
+        const fechaInicio = document.getElementById('fechaInicio');
+        fechaInicio.setAttribute('max', today);
+
+
+        const fechaFin = document.getElementById('fechaFin');
+        fechaFin.setAttribute('min', today);
+    </script>
 
 </body>
 

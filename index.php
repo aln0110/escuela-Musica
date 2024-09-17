@@ -28,6 +28,12 @@
     <b>Link to the instrumento page: </b>
     <a href="view/instrumentoView.php">Instrumento</a><br>
 
+    <b>Link to instrumentos(This create the type of instrument)</b>
+    <a href="view/instrumentosView.php">Instrumentos</a><br>
+
+    <b>Link to categoria</b>
+    <a href="view/categoriaView.php">Categoria</a><br>
+
 
     
     

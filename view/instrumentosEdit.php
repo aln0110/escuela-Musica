@@ -10,7 +10,7 @@
         <form id="createInstrumentoForm" method="post" action="../business/instrumentosActions.php">
             <?php
             require_once '../business/instrumentosBusiness.php';
-            require_once '..domain/instrumentos.php';
+            require_once '../domain/instrumentos.php';
 
             $instrumentosBusiness = new instrumentosBusiness();
 

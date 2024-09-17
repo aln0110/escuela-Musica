@@ -10,7 +10,7 @@
         <form id="createForm" method="post" enctype="multipart/form-data" action="../business/categoriaActions.php">
             <?php
             require_once '../business/categoriaBusiness.php';
-            require_once '..domain/categoria.php';
+            require_once '../domain/categoria.php';
 
             $categoriaBusiness = new categoriaBusiness();
 
@@ -18,10 +18,10 @@
                 $categoria = $categoriaBusiness->getCategoria($_GET['id']);
             }
 
-            echo "<input type='hidden' name='id' value='" . $categoria->getIdCategoria() . "'>"; 
+            echo "<input type='hidden' name='id' value='" . $categoria->getId() . "'>"; 
 
             echo "<label for='nombreCategoria'>Nombre de la categoria</label><br>";
-            echo "<input type='text' name='nombre' value='" . $categoria->getNombreCategoria() . "'> <br>";
+            echo "<input type='text' name='nombre' value='" . $categoria->getNombre() . "'> <br>";
             ?>
             <label for="estado">Estado</label>
             <select name="estado">

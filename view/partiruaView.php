@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="/view/css/table.css">
 
 </head>
+
 <body>
     <div>
         <table>
@@ -34,6 +36,11 @@
 
                     echo "<td>";
 
+                    echo "<form method='get' action='verPartitura.php' style='display:inline;'> ";
+                    echo "<input type='hidden' name='id' value='" . $partitura->getIdPartitura() . "'>";
+                    echo "<input type='submit' value='Ver' name='view'>";
+                    echo "</form>";
+
 
                     echo "<form method='update' action='partituraEdit.php' style='display:inline;'> ";
                     echo "<input type='hidden' name='id' value='" . $partitura->getIdPartitura() . "'>";
@@ -45,11 +52,11 @@
                     echo "<input type='submit' value='Eliminar' name='delete'>";
                     echo "</form>";
 
-                    echo "<form method='post' action='../business/partituraActions.php' style='display:inline;'> ";
+                    echo "<form method='get' action='../business/partituraActions.php' style='display:inline;'> ";
                     echo "<input type='hidden' name='id' value='" . $partitura->getIdPartitura() . "'>";
                     echo "<input type='submit' value='Descargar' name='download'>";
                     echo "</form>";
-                    
+
 
                     echo "</td>";
 
@@ -74,9 +81,9 @@
             <label for="category">Seleccione la categoría del instrumento</label><br>
             <select name="category" id="category">
                 <option value="">Seleccione una categoría</option>
-                <option value="percussion" <?php if(isset($_POST['category']) && $_POST['category'] == 'percussion') echo 'selected'; ?>>Percusión</option>
-                <option value="woodwind" <?php if(isset($_POST['category']) && $_POST['category'] == 'woodwind') echo 'selected'; ?>>Viento madera</option>
-                <option value="brass" <?php if(isset($_POST['category']) && $_POST['category'] == 'brass') echo 'selected'; ?>>Brass</option>
+                <option value="percussion" <?php if (isset($_POST['category']) && $_POST['category'] == 'percussion') echo 'selected'; ?>>Percusión</option>
+                <option value="woodwind" <?php if (isset($_POST['category']) && $_POST['category'] == 'woodwind') echo 'selected'; ?>>Viento madera</option>
+                <option value="brass" <?php if (isset($_POST['category']) && $_POST['category'] == 'brass') echo 'selected'; ?>>Brass</option>
             </select><br>
 
             <label for="instrumento">Seleccione el instrumento</label><br>
@@ -104,11 +111,11 @@
 
             <br>
             <label for="pdf">Seleccione el archivo PDF</label><br>
-            <input type="file" name="pdf" id="pdf" accept=".pdf" required  onchange="updateFileName()"><br>
+            <input type="file" name="pdf" id="pdf" accept=".pdf" required onchange="updateFileName()"><br>
 
-             
-            <input type="hidden" name="estado" id="estado" value="true" >
-     
+
+            <input type="hidden" name="estado" id="estado" value="true">
+
 
             <input type="submit" value="Crear" name="create">
         </form><br>
@@ -117,7 +124,6 @@
 </body>
 
 <script>
-
     document.getElementById('category').addEventListener('change', function() {
         const category = this.value;
         const instrumentoSelect = document.getElementById('instrumento');
@@ -146,14 +152,15 @@
         }
     });
 
-        function updateFileName() {
-            const fileInput = document.getElementById('pdf');
-            const fileNameInput = document.getElementById('nombre');
-            const file = fileInput.files[0];
-            if (file) {
-                const fileNameWithoutExtension = file.name.replace(/\.[^/.]+$/, "");
-                fileNameInput.value = fileNameWithoutExtension;
-            }
+    function updateFileName() {
+        const fileInput = document.getElementById('pdf');
+        const fileNameInput = document.getElementById('nombre');
+        const file = fileInput.files[0];
+        if (file) {
+            const fileNameWithoutExtension = file.name.replace(/\.[^/.]+$/, "");
+            fileNameInput.value = fileNameWithoutExtension;
         }
-    </script>
+    }
+</script>
+
 </html>

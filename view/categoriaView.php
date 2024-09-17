@@ -19,10 +19,43 @@
                 <th>Acciones</th>
             </thead>
             <tbody>
-                <td>1</td>
-                <td>Clasica</td>
-                <td>Si</td>
-                <td>STFU</td>
+                <?php
+                include '../business/categoriaBusiness.php';
+                $categoriaBusiness = new categoriaBusiness();
+                $categorias = $categoriaBusiness->getCategorias();
+
+                foreach ($categorias as $categoria) {
+                    echo "<tr>";
+                    echo "<td>" . $categoria->getId() . "</td>";
+                    echo "<td>" . $categoria->getNombre() . "</td>";
+
+                    echo "<td>";
+                    if ($categoria->getEstado() == 1) {
+                        echo "Activo";
+                    } else {
+                        echo "Inactivo";
+                    }
+                    echo "</td>";
+
+                    echo "<td>";
+                    echo "<form method='post' action='../business/categoriaActions.php' style='display:inline;'>";
+                    echo "<input type='hidden' name='id' value='" . $categoria->getId() . "'>";
+                    echo "<input type='submit' value='Eliminar' name='delete'>";
+                    echo "</form>";
+
+                    echo "<form method='get' action='categoriaEdit.php' style='display:inline;'>";
+                    echo "<input type='hidden' name='id' value='" . $categoria->getId() . "'>";
+                    echo "<input type='submit' value='Editar' name='edit'>";
+                    echo "</form>";
+
+                    echo "</td>";
+
+                    echo "</tr>";
+
+                }
+
+                ?>
+
             </tbody>
         </table>
     </div>

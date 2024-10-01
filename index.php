@@ -34,6 +34,9 @@
     <b>Link to categoria</b>
     <a href="view/categoriaView.php">Categoria</a><br>
 
+    <b>Link to the estudiante page: </b>
+    <a href="view/estudianteView.php">Estudiante</a> <br>
+
 
     
     

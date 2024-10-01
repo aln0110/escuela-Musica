@@ -111,7 +111,8 @@
             });
         }
     });
-
+    
+   /*
         function updateFileName() {
             const fileInput = document.getElementById('pdf');
             const fileNameInput = document.getElementById('nombre');
@@ -121,6 +122,8 @@
                 fileNameInput.value = fileNameWithoutExtension;
             }
         }
+            */
+            
     </script>
 
 </html>

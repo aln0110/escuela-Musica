@@ -34,47 +34,72 @@ if(isset($_POST['create'])){
     }
     
 }else if(isset($_POST['update'])) {
+    
+    if(isset($_FILES['pdf'])){
+        if (isset($_POST['id']) && isset($_POST['nombre']) && isset($_POST['instrumento']) && isset($_POST['estado']) && isset($_FILES['pdf'])) {
 
-    // Check if all required POST fields are set
-    if (isset($_POST['id']) && isset($_POST['nombre']) && isset($_POST['instrumento']) && isset($_POST['estado'])) {
-
-        $id = $_POST['id'];
-        $nombre = $_POST['nombre'];
-        $instrumento = $_POST['instrumento'];
-        $estado = $_POST['estado'] === 'true' ? 1 : 0;
-
-
-        $pdfContent = null;
-
-        $partituraBusiness = new PartituraBusiness();
-
-        $partitura = $partituraBusiness->getPartitura($id);
-
-        if (isset($_FILES['pdf']) && $_FILES['pdf']['error'] === UPLOAD_ERR_OK) {
-            $pdfFile = $_FILES['pdf'];
-            $pdfContent = file_get_contents($pdfFile['tmp_name']);
-        } else {
-
-            $pdfContent = $partitura->getPdfPartitura();
-        }
-
-        if (strlen($id) > 0 && strlen($nombre) > 0 && strlen($instrumento) > 0 && strlen($estado) > 0) {
-
-            $partitura = new Partitura($id, $nombre, $instrumento, $pdfContent, $estado);
-            $result = $partituraBusiness->updatePartitura($partitura);
-
-            if ($result) {
-                header("location: ../view/partiruaView.php?success=updated");
+            $id = $_POST['id'];
+            $nombre = $_POST['nombre'];
+            $instrumento = $_POST['instrumento'];
+            $pdf = $_FILES['pdf'];
+            $estado = $_POST['estado'] === 'true' ? 1 : 0;
+    
+            $partituraBusiness = new PartituraBusiness();
+    
+       
+            if (strlen($id) > 0 && strlen($nombre) > 0 && strlen($instrumento) > 0 && strlen($estado) > 0) {
+    
+                $partitura = new Partitura($id, $nombre, $instrumento, $pdf, $estado);
+                $result = $partituraBusiness->updatePartitura($partitura);
+    
+                if ($result) {
+                    header("location: ../view/partiruaView.php?success=updated");
+                } else {
+                    header("location: ../view/partiruaView.php?error=dbError");
+                }
             } else {
-                header("location: ../view/partiruaView.php?error=dbError");
+                header("location: ../view/partiruaView.php?error=emptyField");
             }
+    
         } else {
-            header("location: ../view/partiruaView.php?error=emptyField");
+            header("location: ../view/partiruaView.php?error=missingFields");
         }
 
-    } else {
-        header("location: ../view/partiruaView.php?error=missingFields");
+    }else{
+        if (isset($_POST['id']) && isset($_POST['nombre']) && isset($_POST['instrumento']) && isset($_POST['estado']) ) {
+
+            $id = $_POST['id'];
+            $nombre = $_POST['nombre'];
+            $instrumento = $_POST['instrumento'];
+     
+            $estado = $_POST['estado'] === 'true' ? 1 : 0;
+    
+            $partituraBusiness = new PartituraBusiness();
+            $partitura2 = $partituraBusiness->getPartitura($id);
+            $pdf = $partitura2->getPdfPartitura();
+       
+            if (strlen($id) > 0 && strlen($nombre) > 0 && strlen($instrumento) > 0 && strlen($estado) > 0) {
+    
+                $partitura = new Partitura($id, $nombre, $instrumento, $pdf, $estado);
+                $result = $partituraBusiness->updatePartitura($partitura);
+    
+                if ($result) {
+                    header("location: ../view/partiruaView.php?success=updated");
+                } else {
+                    header("location: ../view/partiruaView.php?error=dbError");
+                }
+            } else {
+                header("location: ../view/partiruaView.php?error=emptyField");
+            }
+    
+        } else {
+            header("location: ../view/partiruaView.php?error=missingFields");
+        }
+
+    
+
     }
+    
 }
  else if (isset($_POST['delete'])){
     $idPartitura = $_POST['id'];

@@ -18,12 +18,39 @@
                 <th>Acciones</th>
             </thead>
             <tbody>
-                <td>1</td>
-                <td>Carlos</td>
-                <td>Sanchez</td>
-                <td>123456789</td>
-                <td>Activo</td>
-                <td>algo</td>
+
+                <?php
+                include "../business/estduianteBusiness.php";
+                $estudianteBusiness = new EstudianteBusiness();
+                $estudiantes = $estudianteBusiness->getEstudiantes();
+
+                foreach ($estudiantes as $estudiante) {
+                    echo "<tr>";
+                    echo "<td>" . $estudiante->getId() . "</td>";
+                    echo "<td>" . $estudiante->getNombre() . "</td>";
+                    echo "<td>" . $estudiante->getApellido() . "</td>";
+                    echo "<td>" . $estudiante->getCedula() . "</td>";
+                    echo "<td>" . $estudiante->getEstado() . "</td>";
+
+                    echo "<td>";
+                    echo "<form method='post' action='../business/estudianteActions.php' style='display:inline;'> ";
+                    echo "<input type='hidden' name='idEstudiante' value='" . $estudiante->getId() . "'>";
+                    echo "<input type='submit' value='Eliminar' name='delete'>";
+                    echo "</form>";
+
+                    echo "<form method='get' action='estudianteEdit.php' style='display:inline;'>";
+                    echo "<input type='hidden' name='idEstudiante' value='" . $estudiante->getId() . "'>";
+                    echo "<input type='submit' value='Editar' name='edit'>";
+                    echo "</form>";
+
+                    
+
+
+                     echo "</td>";
+                    echo "</tr>";
+                }
+
+                ?>
             </tbody>
         </table>
     </div>
@@ -53,7 +80,7 @@
             </select><br>
 
             <label for="cedula">Cedula</label><br>
-            <input type="text" name="cedulajunta" required><br>
+            <input type="text" name="cedula" required><br>
 
             <label for="fechaNacimiento">Fecha de nacimiento</label><br>
             <input type="date" id="fechaNacimiento" name="fechaNacimiento" required><br>

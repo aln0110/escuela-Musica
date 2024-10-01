@@ -1,11 +1,11 @@
 <?php
-include_once "data/dataEstudiante.php";
+include "../data/dataEstudiante.php";
 
 class  estudianteBusiness
 {
     public $dataEstudiante;
 
-    public function estudianteBusiness()
+    public function  __construct()
     {
         $this->dataEstudiante = new dataEstudiante();
     }

@@ -29,7 +29,17 @@ class instrumentosBusiness
     {
         return $this->dataInstrumentos->getInstrumento($idInstrumento);
     }
+    
+    public function getInstumentosByCategoria($categoria)
+    {
+        return $this->dataInstrumentos->getInstumentosByCategoria($categoria);
+    }
 
+    public function getInstrumentosByEstado($estado)
+    {
+        return $this->dataInstrumentos->getInstrumentosByEstado($estado);
+    }
+    
     public function updateInstrumento($instrumento)
     {
         return $this->dataInstrumentos->updateInstrumento($instrumento);

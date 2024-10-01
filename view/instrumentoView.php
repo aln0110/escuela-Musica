@@ -66,36 +66,27 @@
         <form id=createForm enctype="multipart/form-data" action="../business/instrumentoActions.php" method="post">
 
             <label for="tipo">Seleccione la categoría del instrumento</label><br>
-            <select name="tipo" id="tipo">
-                <option value="">Seleccione una categoría</option>
-                <option value="percussion" <?php if (isset($_POST['tipo']) && $_POST['tipo'] == 'percussion') echo 'selected'; ?>>Percusión</option>
-                <option value="woodwind" <?php if (isset($_POST['tipo']) && $_POST['tipo'] == 'woodwind') echo 'selected'; ?>>Viento madera</option>
-                <option value="brass" <?php if (isset($_POST['tipo']) && $_POST['tipo'] == 'brass') echo 'selected'; ?>>Brass</option>
+            <select name='tipo' id='tipo' onchange="loadInstruments()">
+            <?php
+            include '../business/categoriaBusiness.php';
+
+            $categoriaBusiness = new categoriaBusiness();
+            $categorias = $categoriaBusiness->getCategorias();
+
+            foreach ($categorias as $categoria) {
+                if($categoria->getEstado() == 1){
+                    echo "<option value='" . $categoria->getNombre() . "'>" . $categoria->getNombre() . "</option>";
+                }
+            }
+            ?>
             </select><br>
-
-
             <label for="instrumento">Seleccione el instrumento</label><br>
-
             <select name="instrumento" id="instrumento">
                 <option value="">Seleccione un instrumento</option>
 
-                <?php
-                if (isset($_POST['tipo'])) {
-                    $tipo = $_POST['tipo'];
-                    $instruments = [
-                        'percussion' => ["Snare Drum", "Tenor Drums", "Bass Drum", "Platillos"],
-                        'woodwind' => ["Flauta", "Piccolo", "Clarinete", "Saxofón alto", "Saxofón tenor", "Saxofón barítono"],
-                        'brass' => ["Trompeta", "Trombón", "Tuba", "Melófono"]
-                    ];
-
-                    if (array_key_exists($tipo, $instruments)) {
-                        foreach ($instruments[$tipo] as $instrument) {
-                            echo "<option value='" . strtolower($instrument) . "'>$instrument</option>";
-                        }
-                    }
-                }
-                ?>
             </select><br>
+
+
             <label for="marca">Marca</label><br>
             <input type="text" name="marca" id="marca"><br>
 
@@ -116,30 +107,28 @@
 
 
 <script>
+    function loadInstruments() {
+    var categoria = document.getElementById('tipo').value;
+    var instrumentoSelect = document.getElementById('instrumento');
 
-        document.getElementById('tipo').addEventListener('change', function() {
-            var tipo = this.value;
-            var instrumentoSelect = document.getElementById('instrumento');
+    instrumentoSelect.innerHTML = "<option value=''>Seleccione un instrumento</option>"; 
 
-
-            instrumentoSelect.innerHTML = '<option value="">Seleccione un instrumento</option>';
-
-
-            var instruments = {
-                'percussion': ["Snare Drum", "Tenor Drums", "Bass Drum", "Platillos"],
-                'woodwind': ["Flauta", "Piccolo", "Clarinete", "Saxofón alto", "Saxofón tenor", "Saxofón barítono"],
-                'brass': ["Trompeta", "Trombón", "Tuba", "Melófono"]
-            };
-
-            if (tipo in instruments) {
-                instruments[tipo].forEach(function(instrument) {
-                    var option = document.createElement('option');
-                    option.value = instrument.toLowerCase();
-                    option.textContent = instrument;
-                    instrumentoSelect.appendChild(option);
-                });
+    if (categoria != "") {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "./loadInstruments.php", true);   
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                instrumentoSelect.innerHTML += xhr.responseText; 
             }
-        });
-    </script>
+        };
+        xhr.send("categoria=" + encodeURIComponent(categoria));
+    } else {
+        instrumentoSelect.innerHTML = "<option value=''>Seleccione un instrumento</option>";
+    }
+}
+
+</script>
+
 
 </html>

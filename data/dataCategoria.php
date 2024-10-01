@@ -1,5 +1,5 @@
 <?php
-include 'data.php';
+include_once 'data.php';
 include '../domain/categoria.php';
 
 class dataCategoria extends Data{

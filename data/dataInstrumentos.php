@@ -1,5 +1,5 @@
 <?php
-include 'data.php';
+include_once 'data.php';
 include '../domain/instrumentos.php';
 
 class dataInstrumentos extends Data{
@@ -38,6 +38,34 @@ class dataInstrumentos extends Data{
         }
         return $instrumento;
     }
+
+    public function getInstumentosByCategoria($categoria){
+        $sql = "SELECT * FROM tbinstrumentos WHERE tbinstrumentoscategoria = $categoria";
+        $result = $this->conn->query($sql);
+        $instrumentos = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $instrumento = new Instrumentos($row['tbinstrumentosid'], $row['tbinstrumentosnombre'], $row['tbinstrumentoscategoria'], $row['tbinstrumentosestado']);
+            array_push($instrumentos, $instrumento);
+        }
+
+        mysqli_close($this->conn);
+        return $instrumentos;
+    }
+
+    public function getInstrumentosByEstado($estado){
+        $sql = "SELECT * FROM tbinstrumentos WHERE tbinstrumentosestado = $estado";
+        $result = $this->conn->query($sql);
+        $instrumentos = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $instrumento = new Instrumentos($row['tbinstrumentosid'], $row['tbinstrumentosnombre'], $row['tbinstrumentoscategoria'], $row['tbinstrumentosestado']);
+            array_push($instrumentos, $instrumento);
+        }
+
+        mysqli_close($this->conn);
+        return $instrumentos;
+    }   
 
 
     public function updateInstrumento($instrumento){

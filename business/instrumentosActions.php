@@ -34,7 +34,7 @@ if (isset($_POST['create'])) {
     if (isset($id) && isset($nombre) && isset($categoria) ) {
         if (strlen($nombre) > 0 && strlen($categoria) > 0) {
            
-            $instrumento = new instrumentos($id, $nombre, $categoria, $estado);
+            $instrumento = new instrumentos($id, $nombre, $categoria, 1);
             $instrumentoBusiness = new instrumentosBusiness();
             $result = $instrumentoBusiness->updateInstrumento($instrumento);
 

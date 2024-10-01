@@ -44,7 +44,7 @@
                     echo "<input type='hidden' name='id' value='" . $instrumento->getId() . "'>";
                     echo "<input type='submit' value='Eliminar' name='delete'>";
                     echo "</form>";
-                    
+
                     echo "<form method='get' action='instrumentosEdit.php' style='display:inline;'>";
                     echo "<input type='hidden' name='id' value='" . $instrumento->getId() . "'>";
                     echo "<input type='submit' value='Editar' name='edit'>";
@@ -67,7 +67,23 @@
             <input type="text" id="nombreInstrumento" name="nombreInstrumento" required><br>
 
             <label for="categoriaInstrumento">Categoria del instrumento:</label><br>
-            <input type="text" id="categoriaInstrumento" name="categoriaInstrumento" required><br>
+
+            <select id="categoriaInstrumento" name="categoriaInstrumento" required>
+
+                <?php
+               include '../business/categoriaBusiness.php';
+               $categoriaBusiness = new categoriaBusiness();
+               $categorias = $categoriaBusiness->getCategorias();
+
+                foreach ($categorias as $categoria) {
+                    if ($categoria->getEstado() == 1) {
+                        echo "<option value='" . $categoria->getNombre() . "'>" . $categoria->getNombre() . "</option>";
+                    }
+                }
+
+                ?>                        
+
+            </select><br>
 
 
             <input type="submit" value="Agregar" name="create">

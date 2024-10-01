@@ -13,9 +13,9 @@
             <label for="tipo">Seleccione la categoría del instrumento</label><br>
             <select name="tipo" id="tipo">
                 <option value="">Seleccione una categoría</option>
-                <option value="percussion" <?php if (isset($_POST['tipo']) && $_POST['tipo'] == 'percussion') echo 'selected'; ?>>Percusión</option>
-                <option value="woodwind" <?php if (isset($_POST['tipo']) && $_POST['tipo'] == 'woodwind') echo 'selected'; ?>>Viento madera</option>
-                <option value="brass" <?php if (isset($_POST['tipo']) && $_POST['tipo'] == 'brass') echo 'selected'; ?>>Brass</option>
+                <option value="percussion" 
+                <option value="woodwind" 
+                <option value="brass" 
             </select><br>
 
 
@@ -24,22 +24,6 @@
             <select name="instrumento" id="instrumento">
                 <option value="">Seleccione un instrumento</option>
 
-                <?php
-                if (isset($_POST['tipo'])) {
-                    $tipo = $_POST['tipo'];
-                    $instruments = [
-                        'percussion' => ["Snare Drum", "Tenor Drums", "Bass Drum", "Platillos"],
-                        'woodwind' => ["Flauta", "Piccolo", "Clarinete", "Saxofón alto", "Saxofón tenor", "Saxofón barítono"],
-                        'brass' => ["Trompeta", "Trombón", "Tuba", "Melófono"]
-                    ];
-
-                    if (array_key_exists($tipo, $instruments)) {
-                        foreach ($instruments[$tipo] as $instrument) {
-                            echo "<option value='" . strtolower($instrument) . "'>$instrument</option>";
-                        }
-                    }
-                }
-                ?>
             </select><br>
             <?php
             include_once '../business/instrumentoBusiness.php';

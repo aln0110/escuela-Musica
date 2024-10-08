@@ -65,5 +65,21 @@ class  escuelaData extends Data
         return $result;
     }
 
+    public function sameCedula($cedula) {
+        $sql = "SELECT * FROM tbescuelamusica WHERE tbescuelamusicacedulajuridica = '$cedula'";
+        $result = $this->conn->query($sql);
+        $exists = $result->num_rows > 0;
+        mysqli_close($this->conn);
+        return $exists;
+    }
+
+    public function sameName($name) {
+        $sql = "SELECT * FROM tbescuelamusica WHERE tbescuelamusicanombre = '$name'";
+        $result = $this->conn->query($sql);
+        $exists = $result->num_rows > 0;
+        mysqli_close($this->conn);
+        return $exists;
+    }
+
 
 }

@@ -39,6 +39,10 @@ class EscuelaBusiness
         return $this->escuelaData->logicalDelte($idEscuelaMusica);
     }
 
+    public function sameName($nombre){
+        return $this->escuelaData->sameName($nombre);
+    }
+
     
 }
 

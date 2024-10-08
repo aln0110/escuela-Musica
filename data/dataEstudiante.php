@@ -34,7 +34,7 @@ class dataEstudiante extends Data{
     }
 
     public function updateEstudiante($estudiante){
-        $sql = "UPDATE tbEstudiante SET tbEstudianteNombre = '" . $estudiante->getNombre() . "', tbEstudianteApellido = '" . $estudiante->getApellido() . "', tbEstudiantetelefono = '" . $estudiante->getTelefono() . "', tbEstudiantecorreo = '" . $estudiante->getCorreo() . "', tbEstudiantedireccion = '" . $estudiante->getDireccion() . "', tbEstudiantetipoidentificacion = '" . $estudiante->getTipoIdentificacion() . "', tbEstudiantefechanacimiento = '" . $estudiante->getFechaNacimiento() . "', tbEstudiantecedula = '" . $estudiante->getCedula() . "', tbEstudianteestado = '" . $estudiante->getEstado() . "' WHERE tbEstudianteID = " . $estudiante->getIdEstudiante();
+        $sql = "UPDATE tbEstudiante SET tbEstudianteNombre = '" . $estudiante->getNombre() . "', tbEstudianteApellido = '" . $estudiante->getApellido() . "', tbEstudiantetelefono = '" . $estudiante->getTelefono() . "', tbEstudiantecorreo = '" . $estudiante->getCorreo() . "', tbEstudiantedireccion = '" . $estudiante->getDireccion() . "', tbEstudiantetipoidentificacion = '" . $estudiante->getTipoIdentificacion() . "', tbEstudiantefechanacimiento = '" . $estudiante->getFechaNacimiento() . "', tbEstudiantecedula = '" . $estudiante->getCedula() . "', tbEstudianteestado = '" . $estudiante->getEstado() . "' WHERE tbEstudianteID = " . $estudiante->getId();
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         return $result;

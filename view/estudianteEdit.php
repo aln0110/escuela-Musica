@@ -11,8 +11,8 @@
     <div>
         <form id="createForm" method="post" enctype="multipart/form-data" action="../business/estudianteActions.php">
             <?php
-            include "../business/estduianteBusiness.php";
-            include "../domain/Estudiante.php";
+            include_once "../business/estduianteBusiness.php";
+            include_once "../domain/Estudiante.php";
 
             $estudianteBusiness = new EstudianteBusiness();
             $estudiante = new Estudiante();

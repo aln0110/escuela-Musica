@@ -77,7 +77,7 @@ class  escuelaData extends Data
         $sql = "SELECT * FROM tbescuelamusica WHERE tbescuelamusicanombre = '$name'";
         $result = $this->conn->query($sql);
         $exists = $result->num_rows > 0;
-        mysqli_close($this->conn);
+       // mysqli_close($this->conn);
         return $exists;
     }
 

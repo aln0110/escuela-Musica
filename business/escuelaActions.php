@@ -5,7 +5,12 @@ if (isset($_POST['create'])) {
     $escuelaBusiness = new EscuelaBusiness();
     if($escuelaBusiness->sameName($_POST['nombre'])==1){
 
-        echo "<script>alert('Este nombre ya existe');</script>";
+        echo "<script>
+            alert('Este nombre ya existe');
+            window.location.href = '../view/escuelaView.php';
+          </script>";
+    exit();
+        
     
     }else{
         if (isset($_POST['nombre']) && isset($_POST['cedulaJuridica']) && isset($_POST['correo']) && isset($_POST['telefono']) ) {

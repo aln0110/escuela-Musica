@@ -78,34 +78,24 @@
             <label for="nombre">Digite el nombre de la partitura</label><br>
             <input type="text" name="nombre" id="nombre" value="<?php echo isset($_FILES['pdf']) ? pathinfo($_FILES['pdf']['name'], PATHINFO_FILENAME) : ''; ?>" required><br>
 
-            <label for="category">Seleccione la categoría del instrumento</label><br>
-            <select name="category" id="category">
-                <option value="">Seleccione una categoría</option>
-                <option value="percussion" <?php if (isset($_POST['category']) && $_POST['category'] == 'percussion') echo 'selected'; ?>>Percusión</option>
-                <option value="woodwind" <?php if (isset($_POST['category']) && $_POST['category'] == 'woodwind') echo 'selected'; ?>>Viento madera</option>
-                <option value="brass" <?php if (isset($_POST['category']) && $_POST['category'] == 'brass') echo 'selected'; ?>>Brass</option>
-            </select><br>
+            <label for="tipo">Seleccione la categoría del instrumento</label><br>
+            <select name='tipo' id='tipo' onchange="loadInstruments()">
+            <?php
+            include '../business/categoriaBusiness.php';
 
+            $categoriaBusiness = new categoriaBusiness();
+            $categorias = $categoriaBusiness->getCategorias();
+
+            foreach ($categorias as $categoria) {
+                if($categoria->getEstado() == 1){
+                    echo "<option value='" . $categoria->getNombre() . "'>" . $categoria->getNombre() . "</option>";
+                }
+            }
+            ?>
+            </select><br>
             <label for="instrumento">Seleccione el instrumento</label><br>
             <select name="instrumento" id="instrumento">
                 <option value="">Seleccione un instrumento</option>
-
-                <?php
-                if (isset($_POST['category'])) {
-                    $category = $_POST['category'];
-                    $instruments = [
-                        'percussion' => ["Snare Drum", "Tenor Drums", "Bass Drum", "Platillos"],
-                        'woodwind' => ["Flauta", "Piccolo", "Clarinete", "Saxofón alto", "Saxofón tenor", "Saxofón barítono"],
-                        'brass' => ["Trompeta", "Trombón", "Tuba", "Melófono"]
-                    ];
-
-                    if (array_key_exists($category, $instruments)) {
-                        foreach ($instruments[$category] as $instrument) {
-                            echo "<option value='" . strtolower($instrument) . "'>$instrument</option>";
-                        }
-                    }
-                }
-                ?>
 
             </select><br>
 
@@ -124,33 +114,26 @@
 </body>
 
 <script>
-    document.getElementById('category').addEventListener('change', function() {
-        const category = this.value;
-        const instrumentoSelect = document.getElementById('instrumento');
+    function loadInstruments() {
+    var categoria = document.getElementById('tipo').value;
+    var instrumentoSelect = document.getElementById('instrumento');
 
+    instrumentoSelect.innerHTML = "<option value=''>Seleccione un instrumento</option>"; 
 
-        instrumentoSelect.innerHTML = '<option value="">Seleccione un instrumento</option>';
-
-
-        if (!category) return;
-
-
-        const instruments = {
-            'percussion': ["Snare Drum", "Tenor Drums", "Bass Drum", "Platillos"],
-            'woodwind': ["Flauta", "Piccolo", "Clarinete", "Saxofón alto", "Saxofón tenor", "Saxofón barítono"],
-            'brass': ["Trompeta", "Trombón", "Tuba", "Melófono"]
+    if (categoria != "") {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "./loadInstruments.php", true);   
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                instrumentoSelect.innerHTML += xhr.responseText; 
+            }
         };
-
-
-        if (instruments[category]) {
-            instruments[category].forEach(function(instrument) {
-                const option = document.createElement('option');
-                option.value = instrument.toLowerCase();
-                option.textContent = instrument;
-                instrumentoSelect.appendChild(option);
-            });
-        }
-    });
+        xhr.send("categoria=" + encodeURIComponent(categoria));
+    } else {
+        instrumentoSelect.innerHTML = "<option value=''>Seleccione un instrumento</option>";
+    }
+}
 
     function updateFileName() {
         const fileInput = document.getElementById('pdf');

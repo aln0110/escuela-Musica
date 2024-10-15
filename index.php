@@ -37,6 +37,9 @@
     <b>Link to the estudiante page: </b>
     <a href="view/estudianteView.php">Estudiante</a> <br>
 
+    <b>Link to the curso page</b>
+    <a href="view/cursoView.php">Curso</a><br>
+
 
     
     

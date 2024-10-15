@@ -40,6 +40,9 @@
     <b>Link to the curso page</b>
     <a href="view/cursoView.php">Curso</a><br>
 
+    <b>Link to the profesor page</b>
+    <a href="view/profesorView.php">Profesor</a><br>
+
 
     
     

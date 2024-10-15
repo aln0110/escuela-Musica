@@ -18,7 +18,7 @@ class dataProfesor extends Data{
         mysqli_close($this->conn);
         $profesores = [];
         while ($row = $result->fetch_assoc()) {
-            $profesor = new Profesor($row["tbprofesorid"], $row["tbprofesornombre"], $row["tbprofesorapellidos"], $row["tbprofesordireccion"], $row["tbprofesortipoidentificacion"], $row["tbprofesorcedula"], $row["tbprofesorfechanacimiento"], $row["tbprofesoriban"], $row["tbprofesortelefo"], $row["tbprofesorcorreo"], $row["tbprofesoractivo"]);
+            $profesor = new Profesor($row["tbprofesorid"], $row["tbprofesornombre"], $row["tbprofesorapellidos"], $row["tbprofesordireccion"], $row["tbprofesortipoidentificacion"], $row["tbprofesorcedula"], $row["tbprofesoriban"], $row["tbprofesortelefo"], $row["tbprofesorcorreo"], $row["tbprofesoractivo"]);
             array_push($profesores, $profesor);
         }
         return $profesores;
@@ -29,7 +29,7 @@ class dataProfesor extends Data{
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         while ($row = $result->fetch_assoc()) {
-            $profesor = new Profesor($row["tbprofesorid"], $row["tbprofesornombre"], $row["tbprofesorapellidos"], $row["tbprofesordireccion"], $row["tbprofesortipoidentificacion"], $row["tbprofesorcedula"], $row["tbprofesorfechanacimiento"], $row["tbprofesoriban"], $row["tbprofesortelefo"], $row["tbprofesorcorreo"], $row["tbprofesoractivo"]);
+            $profesor = new Profesor($row["tbprofesorid"], $row["tbprofesornombre"], $row["tbprofesorapellidos"], $row["tbprofesordireccion"], $row["tbprofesortipoidentificacion"], $row["tbprofesorcedula"], $row["tbprofesoriban"], $row["tbprofesortelefo"], $row["tbprofesorcorreo"], $row["tbprofesoractivo"]);
         }
         return $profesor;
     }

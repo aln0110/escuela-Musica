@@ -20,14 +20,37 @@
                 <th>Acciones</th>
             </thead>
             <tbody>
-                <th>1</th>
-                <th>Carlos</th>
-                <th>Jimenez</th>
-                <th>cedula</th>
-                <th>123456789</th>
-                <th>a@a.com</th>
-                <th>12345678</th>
-                <th></th>
+                <?php
+                include_once "../business/profesorBusiness.php";
+                include_once "../domain/profesor.php";
+
+                $profesorBusiness = new ProfesorBusiness();
+                $profesores = $profesorBusiness->getProfesores();
+
+                foreach ($profesores as $profesor) {
+                    echo "<tr>";
+                    echo "<td>" . $profesor->getId() . "</td>";
+                    echo "<td>" . $profesor->getNombre() . "</td>";
+                    echo "<td>" . $profesor->getApellido() . "</td>";
+                    echo "<td>" . $profesor->getTipoIdentificacion() . "</td>";
+                    echo "<td>" . $profesor->getCedula() . "</td>";
+                    echo "<td>" . $profesor->getCorreo() . "</td>";
+                    echo "<td>" . $profesor->getTelefono() . "</td>";
+                    echo "<td>";
+                    echo "<form method='post' action='../business/profesorActions.php' style='display:inline;'> ";
+                    echo "<input type='hidden' name='idProfesor' value='" . $profesor->getId() . "'>";
+                    echo "<input type='submit' value='Eliminar' name='delete'>";
+                    echo "</form>";
+
+                    echo "<form method='get' action='profesorEdit.php' style='display:inline;'>";
+                    echo "<input type='hidden' name='idProfesor' value='" . $profesor->getId() . "'>";
+                    echo "<input type='submit' value='Editar' name='edit'>";
+                    echo "</form>";
+
+                    echo "</td>";
+                    echo "</tr>";
+                }
+                ?>
             </tbody>
         </table>
     </div>

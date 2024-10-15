@@ -9,7 +9,7 @@
 
 <body>
     <div>
-        <form action="" method="post">
+        <form id="createForm" action="../business/cursoActions.php" method="post"  enctype="multipart/form-data">
 
             <?php
             include_once '../business/cursoBusiness.php';
@@ -22,7 +22,7 @@
             }
 
             echo "<input type='hidden' name='idCurso' value='" . $curso->getId() . "'>";
-            
+
             echo "<label for='nombre'>Nombre</label><br>";
             echo "<input type='text' id='nombre' name='nombre' value='" . $curso->getNombre() . "' required><br>";
 

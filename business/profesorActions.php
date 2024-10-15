@@ -21,7 +21,7 @@ if (isset($_POST['create'])) {
             && strlen($direccion) > 0 && strlen($iban) > 0) {
 
 
-            $profesor = new Profesor(0, $nombre, $apellido, $tipoIdentificacion, $cedula, $correo, $telefono, $direccion, $iban, 1);
+            $profesor = new Profesor(0, $nombre, $apellido, $direccion, $tipoIdentificacion, $cedula, $iban, $telefono, $correo, 1);
             $profesorBusiness = new ProfesorBusiness();
             $result = $profesorBusiness->insertProfesor($profesor);
 
@@ -57,7 +57,7 @@ if (isset($_POST['create'])) {
             && strlen($telefono) > 0 && strlen($direccion) > 0 && strlen($iban) > 0) {
 
 
-            $profesor = new Profesor($idProfesor, $nombre, $apellido, $tipoIdentificacion, $cedula, $correo, $telefono, $direccion, $iban, 1);
+            $profesor = new Profesor($idProfesor, $nombre, $apellido, $direccion, $tipoIdentificacion, $cedula, $iban, $telefono, $correo, 1);
             $profesorBusiness = new ProfesorBusiness();
             $result = $profesorBusiness->updateProfesor($profesor);
 

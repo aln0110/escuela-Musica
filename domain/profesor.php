@@ -13,7 +13,7 @@ class profesor
     private $correo;
     private $estado;
 
-    public function __construct($id = "", $nombre = "", $apellido = "", $direccion = "", $tipoIdentificacion = "", $cedula = "", $fechaNacimiento = "", $iban = "", $telefono = "", $correo = "", $estado = "")
+    public function __construct($id = "", $nombre = "", $apellido = "", $direccion = "", $tipoIdentificacion = "", $cedula = "", $iban = "", $telefono = "", $correo = "", $estado = "")
     {
         $this->id = $id;
         $this->nombre = $nombre;
@@ -21,7 +21,7 @@ class profesor
         $this->direccion = $direccion;
         $this->tipoIdentificacion = $tipoIdentificacion;
         $this->cedula = $cedula;
-        $this->fechaNacimiento = $fechaNacimiento;
+       
         $this->iban = $iban;
         $this->telefono = $telefono;
         $this->correo = $correo;

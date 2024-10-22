@@ -39,6 +39,16 @@ class cursoBusiness
     {
         return $this->dataCurso->logicalDeleteCurso($idCurso);
     }
+
+    public function cursoExistsBySigla($sigla)
+    {
+        return $this->dataCurso->cursoExistsBySigla($sigla);
+    }
+
+    public function getCursoBySigla($sigla)
+    {
+        return $this->dataCurso->getCursoIdBySigla($sigla);
+    }
 }
 
 

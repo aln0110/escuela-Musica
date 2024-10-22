@@ -55,5 +55,38 @@ class dataCurso extends Data {
         mysqli_close($this->conn);
         return $result;
     }
+
+    public function getCursoIdBySigla($sigla) {
+        
+        $sql = "SELECT tbcursoid FROM tbCurso WHERE tbcursosigla = '$sigla'";
+        $result = $this->conn->query($sql);
+        
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            mysqli_close($this->conn);
+            return $row['tbcursoid'];  
+        } else {
+            mysqli_close($this->conn);
+            return null;  
+        }
+    }
+
+    public function cursoExistsBySigla($sigla) {
+        
+        $sql = "SELECT tbcursoid FROM tbCurso WHERE tbcursosigla = '$sigla'";
+        $result = $this->conn->query($sql);
+        
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $cursoId = $row['tbcursoid'];  
+            mysqli_close($this->conn);
+            return ['exists' => true, 'id' => $cursoId];  
+        } else {
+            mysqli_close($this->conn);
+            return ['exists' => false, 'id' => null];  
+        }
+    }
+    
+    
 }
 ?>

@@ -39,6 +39,16 @@ class  estudianteBusiness
     {
         return $this->dataEstudiante->logicalDelteEstudiante($idEstudiante);
     }
+
+    public function estudianteExistsByCedula($cedula)
+    {
+        return $this->dataEstudiante->estudianteExistsByCedula($cedula);
+    }
+
+    public function getEstudianteByCedula($cedula)
+    {
+        return $this->dataEstudiante->getEstudianteIdByCedula($cedula);
+    }
 }
 
 ?>

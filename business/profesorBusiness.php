@@ -39,6 +39,16 @@ class profesorBusiness
     {
         return $this->dataProfesor->logicalDeleteProfesor($idProfesor);
     }
+
+    public function profesorExistsByCedula($cedula)
+    {
+        return $this->dataProfesor->profesorExistsByCedula($cedula);
+    }
+
+    public function getProfesorByCedula($cedula)
+    {
+        return $this->dataProfesor->getProfesorIdByCedula($cedula);
+    }
 }
 
 ?>

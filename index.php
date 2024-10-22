@@ -43,6 +43,12 @@
     <b>Link to the profesor page</b>
     <a href="view/profesorView.php">Profesor</a><br>
 
+    <b>Link to the matricula page</b>
+    <a href="view/matriculaView.php">Matricula</a><br>
+
+    <b>Link to the prueba page</b>
+    <a href="view/prueba.php">Prueba</a><br>
+
 
     
     

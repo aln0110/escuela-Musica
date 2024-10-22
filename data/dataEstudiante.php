@@ -61,10 +61,10 @@ class dataEstudiante extends Data{
         
 
         if ($result->num_rows > 0) {
-            mysqli_close($this->conn);
+          //  mysqli_close($this->conn);
             return true;
         } else {
-            mysqli_close($this->conn);
+          //  mysqli_close($this->conn);
             return false;
         }
     }

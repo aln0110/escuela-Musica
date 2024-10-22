@@ -1,26 +1,31 @@
 <?php
 include_once 'data.php';
 include_once '../domain/matricula.php';
+include_once '../domain/detallesMatricula.php';
+include_once '../domain/cursoDetalles.php';
 
-class dataMatricula extends Data {
+class dataMatricula extends Data
+{
 
 
-    public function insertMatricula($matricula) {
-        $sql = "INSERT INTO tbmatricula (tbmatriculaestudiante, tbmatriculaprofesor, tbmatriculacurso, tbmatriculafecha) VALUES
-            ('" . $matricula->getIdEstudiante() . "', '" . $matricula->getIdProfesor() . "', '" . $matricula->getIdCurso() . "', '" . $matricula->getFecha() . "')";
+    public function insertMatricula($matricula)
+    {
+        $sql = "INSERT INTO tbmatricula (tbmatriculaestudiante, tbmatriculaprofesor, tbmatriculacurso, tbmatriculafecha, tbmatriculaactivo) VALUES
+            ('" . $matricula->getIdEstudiante() . "', '" . $matricula->getIdProfesor() . "', '" . $matricula->getIdCurso() . "', '" . $matricula->getFecha() . "', '" . $matricula->getActivo() . "')";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         return $result;
     }
 
 
-    public function getMatriculas() {
+    public function getMatriculas()
+    {
         $sql = "SELECT * FROM tbmatricula";
         $result = $this->conn->query($sql);
         $matriculas = [];
 
         while ($row = $result->fetch_assoc()) {
-            $matricula = new Matricula($row['tbmatriculaid'], $row['tbmatriculaestudiante'], $row['tbmatriculaprofesor'], $row['tbmatriculacurso'], $row['tbmatriculafecha']);
+            $matricula = new Matricula($row['tbmatriculaid'], $row['tbmatriculaestudiante'], $row['tbmatriculaprofesor'], $row['tbmatriculacurso'], $row['tbmatriculafecha'], $row['tbmatriculaactivo']);
             array_push($matriculas, $matricula);
         }
 
@@ -28,25 +33,25 @@ class dataMatricula extends Data {
         return $matriculas;
     }
 
-    public function getMatricula($idMatricula) {
+    public function getMatricula($idMatricula)
+    {
         $sql = "SELECT * FROM tbmatricula WHERE tbmatriculaid = $idMatricula";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         $matricula = null;
 
         if ($row = $result->fetch_assoc()) {
-            $matricula = new Matricula($row['tbmatriculaid'], $row['tbmatriculaestudiante'], $row['tbmatriculaprofesor'], $row['tbmatriculacurso'], $row['tbmatriculafecha']);
+            $matricula = new Matricula($row['tbmatriculaid'], $row['tbmatriculaestudiante'], $row['tbmatriculaprofesor'], $row['tbmatriculacurso'], $row['tbmatriculafecha'], $row['tbmatriculaactivo']);
         }
 
         return $matricula;
     }
 
 
-    public function updateMatricula($matricula) {
+    public function updateMatricula($matricula)
+    {
         $sql = "UPDATE tbmatricula SET 
-                tbmatriculaestudiante = '" . $matricula->getIdEstudiante() . "',
-                tbmatriculaprofesor = '" . $matricula->getIdProfesor() . "',
-                tbmatriculacurso = '" . $matricula->getIdCurso() . "',
+                tbmatriculaestudiante = '" . $matricula->getIdEstudiante() . "', tbmatriculaprofesor = '" . $matricula->getIdProfesor() . "', tbmatriculacurso = '" . $matricula->getIdCurso() . "',
                 tbmatriculafecha = '" . $matricula->getFecha() . "' 
             WHERE tbmatriculaid = " . $matricula->getId();
         $result = $this->conn->query($sql);
@@ -55,11 +60,80 @@ class dataMatricula extends Data {
     }
 
 
-    public function logicalDeleteMatricula($idMatricula) {
+    public function logicalDeleteMatricula($idMatricula)
+    {
         $sql = "UPDATE tbmatricula SET tbmatriculaactivo = 0 WHERE tbmatriculaid = $idMatricula";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         return $result;
     }
+
+
+    public function getMatriculaDetails($idEstudiante)
+{
+    $sql = "SELECT m.tbmatriculaid, 
+                   c.tbcursonombre, 
+                   c.tbcursosigla, 
+                   CONCAT(e.tbEstudianteNombre, ' ', e.tbEstudianteApellido) AS estudianteNombreCompleto, 
+                   CONCAT(p.tbprofesornombre, ' ', p.tbprofesorapellidos) AS profesorNombreCompleto, 
+                   m.tbmatriculafecha,
+                   m.tbmatriculaactivo
+            FROM tbmatricula m
+            JOIN tbcurso c ON m.tbmatriculacurso = c.tbcursoid
+            JOIN tbestudiante e ON m.tbmatriculaestudiante = e.tbEstudianteID
+            JOIN tbprofesor p ON m.tbmatriculaprofesor = p.tbprofesorid
+            WHERE m.tbmatriculaestudiante = $idEstudiante";
+
+    $result = $this->conn->query($sql);
+    $matriculaDetails = null;  
+
+    while ($row = $result->fetch_assoc()) {
+        $matriculaDetails = new MatriculaDetails(
+            $row['tbmatriculaid'], 
+            $row['tbcursonombre'], 
+            $row['tbcursosigla'], 
+            $row['estudianteNombreCompleto'], 
+            $row['profesorNombreCompleto'], 
+            $row['tbmatriculafecha'],
+            $row['tbmatriculaactivo']  
+        );
+    }
+
+    mysqli_close($this->conn);
+    return $matriculaDetails;  
 }
-?>
+
+public function getCursoByEstudiante($idEstudiante) {
+    $sql = "SELECT m.tbmatriculaid,   
+                   c.tbcursonombre, 
+                   c.tbcursosigla, 
+                   p.tbprofesornombre, 
+                   p.tbprofesorapellidos, 
+                   m.tbmatriculaactivo 
+            FROM tbmatricula m
+            JOIN tbcurso c ON m.tbmatriculacurso = c.tbcursoid
+            JOIN tbprofesor p ON m.tbmatriculaprofesor = p.tbprofesorid
+            WHERE m.tbmatriculaestudiante = $idEstudiante";
+
+    $result = $this->conn->query($sql);
+
+    $cursoDetalles = []; 
+    while ($row = $result->fetch_assoc()) {
+        $cursoDetalles[] = new CursoDetalles( 
+            $row['tbmatriculaid'],  
+            $row['tbcursonombre'], 
+            $row['tbcursosigla'], 
+            $row['tbprofesornombre'], 
+            $row['tbprofesorapellidos'], 
+            $row['tbmatriculaactivo']  
+        );
+    }
+
+    mysqli_close($this->conn);
+    return $cursoDetalles;  
+}
+
+
+
+
+}

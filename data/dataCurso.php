@@ -63,10 +63,10 @@ class dataCurso extends Data {
         
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            mysqli_close($this->conn);
+          //  mysqli_close($this->conn);
             return $row['tbcursoid'];  
         } else {
-            mysqli_close($this->conn);
+          //  mysqli_close($this->conn);
             return null;  
         }
     }
@@ -79,10 +79,10 @@ class dataCurso extends Data {
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $cursoId = $row['tbcursoid'];  
-            mysqli_close($this->conn);
+         //   mysqli_close($this->conn);
             return ['exists' => true, 'id' => $cursoId];  
         } else {
-            mysqli_close($this->conn);
+            //mysqli_close($this->conn);
             return ['exists' => false, 'id' => null];  
         }
     }

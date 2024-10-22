@@ -45,7 +45,7 @@ class  estudianteBusiness
         return $this->dataEstudiante->estudianteExistsByCedula($cedula);
     }
 
-    public function getEstudianteByCedula($cedula)
+    public function getEstudianteIdByCedula($cedula)
     {
         return $this->dataEstudiante->getEstudianteIdByCedula($cedula);
     }

@@ -7,13 +7,15 @@ class matricula{
     private $idProfesor;
     private $idCurso;
     private $fecha;
+    private $activo;
 
-    public function __construct($id="", $idEstudiante="", $idProfesor="", $idCurso="", $fecha=""){
+    public function __construct($id="", $idEstudiante="", $idProfesor="", $idCurso="", $fecha="", $activo=""){
         $this->id = $id;
         $this->idEstudiante = $idEstudiante;
         $this->idProfesor = $idProfesor;
         $this->idCurso = $idCurso;
         $this->fecha = $fecha;
+        $this->activo = $activo;
     }
 
     public function setId($id){
@@ -53,6 +55,15 @@ class matricula{
     public function getFecha(){
         return $this->fecha;
     }
+
+    public function setActivo($activo){
+        $this->activo = $activo;
+    }
+
+    public function getActivo(){
+        return $this->activo;
+    }
+    
 
     
 

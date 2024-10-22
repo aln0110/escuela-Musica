@@ -45,7 +45,7 @@ class cursoBusiness
         return $this->dataCurso->cursoExistsBySigla($sigla);
     }
 
-    public function getCursoBySigla($sigla)
+    public function getCursoIdBySigla($sigla)
     {
         return $this->dataCurso->getCursoIdBySigla($sigla);
     }

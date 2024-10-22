@@ -45,7 +45,7 @@ class profesorBusiness
         return $this->dataProfesor->profesorExistsByCedula($cedula);
     }
 
-    public function getProfesorByCedula($cedula)
+    public function getProfesorIdByCedula($cedula)
     {
         return $this->dataProfesor->getProfesorIdByCedula($cedula);
     }

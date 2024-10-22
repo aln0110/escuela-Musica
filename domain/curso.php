@@ -7,8 +7,10 @@
     private $corequisito;
     private $creditos;
     private $estado;
+    private $iniHora;
+    private $finHora;
 
-    public function __construct($id="", $nombre="", $siglas="", $requisito="", $corequisito="", $creditos="", $estado=""){
+    public function __construct($id="", $nombre="", $siglas="", $requisito="", $corequisito="", $creditos="", $estado="", $iniHora="", $finHora=""){
         $this->id = $id;
         $this->nombre = $nombre;
         $this->siglas = $siglas;
@@ -16,6 +18,8 @@
         $this->corequisito = $corequisito;
         $this->creditos = $creditos;
         $this->estado = $estado;
+        $this->iniHora = $iniHora;
+        $this->finHora = $finHora;
     }
 
     public function setId($id){
@@ -72,6 +76,22 @@
 
     public function getEstado(){
         return $this->estado;
+    }
+
+    public function setIniHora($iniHora){
+        $this->iniHora = $iniHora;
+    }
+
+    public function getIniHora(){
+        return $this->iniHora;
+    }
+
+    public function setFinHora($finHora){
+        $this->finHora = $finHora;
+    }
+
+    public function getFinHora(){
+        return $this->finHora;
     }
 
 

@@ -39,6 +39,11 @@
             echo "<input type='number' id='creditos' name='creditos' value='" . $curso->getCreditos() . "' required><br>";
 
             ?>
+            <label for="horaInicio">Hora de inicio</label><br>
+            <input type="time" id="horaInicio" name="horaInicio" required><br>
+
+            <label for="horaFin">Hora del final</label><br>
+            <input type="time" id="horaFin" name="horaFin" required><br>
 
 
 

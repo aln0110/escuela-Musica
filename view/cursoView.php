@@ -68,6 +68,12 @@
             <label for="creditos">Creditos</label><br>
             <input type="number" id="creditos" name="creditos" required><br>
 
+            <label for="horaInicio">Hora de inicio</label><br>
+            <input type="time" id="horaInicio" name="horaInicio" required><br>
+
+            <label for="horaFin">Hora del final</label><br>
+            <input type="time" id="horaFin" name="horaFin" required><br>
+
             
             <input type="submit" value="Crear" name="create">
         </form>
@@ -75,4 +81,15 @@
     <br>
     <a href="../index.php">index</a>
 </body>
+<script>
+    document.getElementById('createForm').addEventListener('submit', function(event) {
+        var horaInicio = document.getElementById('horaInicio').value;
+        var horaFin = document.getElementById('horaFin').value;
+
+        if (horaInicio >= horaFin) {
+            alert('La hora de finalización debe ser posterior a la hora de inicio.');
+            event.preventDefault(); 
+        }
+    });
+</script>
 </html>

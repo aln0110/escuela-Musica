@@ -54,6 +54,38 @@ class dataEstudiante extends Data{
         return $result;
     }
 
+    public function estudianteExistsByCedula($cedula) {
+
+        $sql = "SELECT * FROM tbEstudiante WHERE tbEstudiantecedula = '$cedula'";
+        $result = $this->conn->query($sql);
+        
+
+        if ($result->num_rows > 0) {
+            mysqli_close($this->conn);
+            return true;
+        } else {
+            mysqli_close($this->conn);
+            return false;
+        }
+    }
+
+    public function getEstudianteIdByCedula($cedula) {
+
+        $sql = "SELECT tbEstudianteid FROM tbEstudiante WHERE tbEstudiantecedula = '$cedula'";
+        $result = $this->conn->query($sql);
+        
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            mysqli_close($this->conn);
+            return $row['tbEstudianteid'];
+        } else {
+            mysqli_close($this->conn);
+            return null;  
+        }
+    }
+    
+    
+
 }
 
 

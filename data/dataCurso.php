@@ -5,8 +5,8 @@ include_once "../domain/curso.php";
 class dataCurso extends Data {
 
     public function insertCurso($curso) {
-        $sql = "INSERT INTO tbCurso (tbcursonombre, tbcursosigla, tbcursorequisito, tbcursocorrequisito, tbcursocreditos, tbcursoactivo) VALUES 
-        ('" . $curso->getNombre() . "', '" . $curso->getSiglas() . "', '" . $curso->getRequisito() . "', '" . $curso->getCorequisito() . "', '" . $curso->getCreditos() . "', '" . $curso->getEstado() . "')";
+        $sql = "INSERT INTO tbCurso (tbcursonombre, tbcursosigla, tbcursorequisito, tbcursocorrequisito, tbcursocreditos, tbcursoinihora, tbcursofinhora, tbcursoactivo) VALUES 
+        ('" . $curso->getNombre() . "', '" . $curso->getSiglas() . "', '" . $curso->getRequisito() . "', '" . $curso->getCorequisito() . "', '" . $curso->getCreditos() . "', '" . $curso->getIniHora() . "', '" . $curso->getFinHora() . "', '" . $curso->getEstado() . "')";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         return $result;
@@ -18,7 +18,7 @@ class dataCurso extends Data {
         mysqli_close($this->conn);
         $cursos = [];
         while ($row = $result->fetch_assoc()) {
-            $curso = new curso($row["tbcursoid"], $row["tbcursonombre"], $row["tbcursosigla"], $row["tbcursorequisito"], $row["tbcursocorrequisito"], $row["tbcursocreditos"], $row["tbcursoactivo"]);
+            $curso = new curso($row["tbcursoid"], $row["tbcursonombre"], $row["tbcursosigla"], $row["tbcursorequisito"], $row["tbcursocorrequisito"], $row["tbcursocreditos"], $row["tbcursoinihora"], $row["tbcursofinhora"], $row["tbcursoactivo"]);
             array_push($cursos, $curso);
         }
         return $cursos;
@@ -30,13 +30,13 @@ class dataCurso extends Data {
         mysqli_close($this->conn);
         $curso = null;
         while ($row = $result->fetch_assoc()) {
-            $curso = new curso($row["tbcursoid"], $row["tbcursonombre"], $row["tbcursosigla"], $row["tbcursorequisito"], $row["tbcursocorrequisito"], $row["tbcursocreditos"], $row["tbcursoactivo"]);
+            $curso = new curso($row["tbcursoid"], $row["tbcursonombre"], $row["tbcursosigla"], $row["tbcursorequisito"], $row["tbcursocorrequisito"], $row["tbcursocreditos"], $row["tbcursoinihora"], $row["tbcursofinhora"], $row["tbcursoactivo"]);
         }
         return $curso;
     }
 
     public function updateCurso($curso) {
-        $sql = "UPDATE tbCurso SET tbcursonombre = '" . $curso->getNombre() . "', tbcursosigla = '" . $curso->getSiglas() . "', tbcursorequisito = '" . $curso->getRequisito() . "', tbcursocorrequisito = '" . $curso->getCorequisito() . "', tbcursocreditos = '" . $curso->getCreditos() . "', tbcursoactivo = '" . $curso->getEstado() . "' WHERE tbcursoid = " . $curso->getId();
+        $sql = "UPDATE tbCurso SET tbcursonombre = '" . $curso->getNombre() . "', tbcursosigla = '" . $curso->getSiglas() . "', tbcursorequisito = '" . $curso->getRequisito() . "', tbcursocorrequisito = '" . $curso->getCorequisito() . "', tbcursocreditos = '" . $curso->getCreditos() . "', tbcursoinihora = '" . $curso->getIniHora() . "', tbcursofinhora = '" . $curso->getFinHora() . "', tbcursoactivo = '" . $curso->getEstado() . "' WHERE tbcursoid = " . $curso->getId();
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         return $result;

@@ -55,5 +55,36 @@ class dataProfesor extends Data{
         return $result;
     }
 
+    public function profesorExistsByCedula($cedula) {
+
+        $sql = "SELECT * FROM tbprofesor WHERE tbprofesorcedula = '$cedula'";
+        $result = $this->conn->query($sql);
+        
+
+        if ($result->num_rows > 0) {
+            mysqli_close($this->conn);
+            return true;
+        } else {
+            mysqli_close($this->conn);
+            return false;
+        }
+    }
+
+    public function getProfesorIdByCedula($cedula) {
+  
+        $sql = "SELECT tbprofesorid FROM tbprofesor WHERE tbprofesorcedula = '$cedula'";
+        $result = $this->conn->query($sql);
+        
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            mysqli_close($this->conn);
+            return $row['tbprofesorid'];
+        } else {
+            mysqli_close($this->conn);
+            return null;  
+        }
+    }
+    
+
 }
 ?>

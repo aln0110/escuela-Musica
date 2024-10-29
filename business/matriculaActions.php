@@ -22,48 +22,41 @@ if (isset($_POST['create'])) {
           </script>";
         exit();
     } else {
-        if ($profesorBusiness->profesorExistsByCedula($cedulaPro) != true) {
+
+        if ($cursoBusiness->cursoExistsBySigla($siglaCurso) != true) {
             echo "<script>
-            alert('Este profesor no existe');
-            window.location.href = '../view/matriculaView.php';
-          </script>";
-            exit();
-        } else {
-            if ($cursoBusiness->cursoExistsBySigla($siglaCurso) != true) {
-                echo "<script>
             alert('Este curso no existe');
             window.location.href = '../view/matriculaView.php';
             </script>";
-                exit();
-            } else {
-                if (isset($_POST['cedulaEst']) && isset($_POST['cedulaPro']) && isset($_POST['sigla'])) {
+            exit();
+        } else {
+            if (isset($_POST['cedulaEst']) && isset($_POST['cedulaPro']) && isset($_POST['sigla'])) {
 
-                    $idEstudiante = $estudianteBusiness->getEstudianteIdByCedula($cedulaEst);
-                    $idProfesor = $profesorBusiness->getProfesorIdByCedula($cedulaPro);
-                    $idCurso = $cursoBusiness->getCursoIdBySigla($siglaCurso);
+                $idEstudiante = $estudianteBusiness->getEstudianteIdByCedula($cedulaEst);
+                $idProfesor = $profesorBusiness->getProfesorIdByCedula($cedulaPro);
+                $idCurso = $cursoBusiness->getCursoIdBySigla($siglaCurso);
 
-                    if ($idEstudiante && $idProfesor && $idCurso) {
-                        $fechaMatricula = date("Y-m-d");
-                        $matricula = new Matricula(0, $idEstudiante, $idProfesor, $idCurso, $fechaMatricula, 1);
+                if ($idEstudiante && $idProfesor && $idCurso) {
+                    $fechaMatricula = date("Y-m-d");
+                    $matricula = new Matricula(0, $idEstudiante,  $idCurso, $fechaMatricula, 1);
 
-                        $matriculaBusiness = new MatriculaBusiness();
-                        $result = $matriculaBusiness->insertMatricula($matricula);
+                    $matriculaBusiness = new MatriculaBusiness();
+                    $result = $matriculaBusiness->insertMatricula($matricula);
 
-                        if ($result) {
-                            header("Location: ../view/matriculaView.php?success=inserted");
-                        } else {
-                            header("Location: ../view/matriculaView.php?error=dbError");
-                        }
+                    if ($result) {
+                        header("Location: ../view/matriculaView.php?success=inserted");
                     } else {
-                        header("Location: ../view/matriculaView.php?error=invalidData");
+                        header("Location: ../view/matriculaView.php?error=dbError");
                     }
                 } else {
-                    header("Location: ../view/matriculaView.php?error=missingFields");
+                    header("Location: ../view/matriculaView.php?error=invalidData");
                 }
+            } else {
+                header("Location: ../view/matriculaView.php?error=missingFields");
             }
         }
     }
-}elseif(isset($_POST['delete'])){
+} elseif (isset($_POST['delete'])) {
     $matriculaBusiness = new MatriculaBusiness();
     $idMatricula = $_POST['idMatricula'];
     $result = $matriculaBusiness->logicalDelete($idMatricula);

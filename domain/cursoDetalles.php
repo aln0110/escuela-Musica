@@ -3,18 +3,24 @@ class CursoDetalles {
     private $idCurso;
     private $nombreCurso;
     private $siglasCurso;
+    private $cursoGrupo;
     private $nombreProfesor;
     private $apellidoProfesor;
+    private $cicloNombre;
+
     private $activo;
 
-    public function __construct($idCurso="", $nombreCurso="", $siglasCurso="", $nombreProfesor="", $apellidoProfesor="", $activo="") {
+    public function __construct($idCurso="", $nombreCurso="", $siglasCurso="", $cursoGrupo="",$nombreProfesor="", $apellidoProfesor="", $cicloNombre="", $activo="") {
 
        $this->idCurso = $idCurso;          
         $this->nombreCurso = $nombreCurso;
         $this->siglasCurso = $siglasCurso;
+        $this->cursoGrupo = $cursoGrupo;
         $this->nombreProfesor = $nombreProfesor;
         $this->apellidoProfesor = $apellidoProfesor;
+        $this->cicloNombre = $cicloNombre;
         $this->activo = $activo;
+
     }
 
     public function getIdCurso() {
@@ -44,6 +50,28 @@ class CursoDetalles {
     public function isActivo() {
         return $this->activo;
     }
+
+    public function setCicloNombre($cicloNombre) {
+        $this->cicloNombre = $cicloNombre;
+    }
+
+    public function getCicloNombre() {
+        return $this->cicloNombre;
+    }
+
+    public function setActivo($activo) {
+        $this->activo = $activo;
+    }
+
+    public function setCursoGrupo($cursoGrupo) {
+        $this->cursoGrupo = $cursoGrupo;
+    }   
+
+    public function getCursoGrupo() {
+        return $this->cursoGrupo;
+    }
+    
+
 }
 
 

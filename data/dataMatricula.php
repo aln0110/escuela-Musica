@@ -10,8 +10,8 @@ class dataMatricula extends Data
 
     public function insertMatricula($matricula)
     {
-        $sql = "INSERT INTO tbmatricula (tbmatriculaestudiante, tbmatriculaprofesor, tbmatriculacurso, tbmatriculafecha, tbmatriculaactivo) VALUES
-            ('" . $matricula->getIdEstudiante() . "', '" . $matricula->getIdProfesor() . "', '" . $matricula->getIdCurso() . "', '" . $matricula->getFecha() . "', '" . $matricula->getActivo() . "')";
+        $sql = "INSERT INTO tbmatricula (tbmatriculaestudiante, tbmatriculacurso, tbmatriculafecha, tbmatriculaactivo) VALUES
+            ('" . $matricula->getIdEstudiante() . "', '" . $matricula->getIdCurso() . "', '" . $matricula->getFecha() . "', '" . $matricula->getActivo() . "')";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         return $result;
@@ -25,7 +25,7 @@ class dataMatricula extends Data
         $matriculas = [];
 
         while ($row = $result->fetch_assoc()) {
-            $matricula = new Matricula($row['tbmatriculaid'], $row['tbmatriculaestudiante'], $row['tbmatriculaprofesor'], $row['tbmatriculacurso'], $row['tbmatriculafecha'], $row['tbmatriculaactivo']);
+            $matricula = new Matricula($row['tbmatriculaid'], $row['tbmatriculaestudiante'], $row['tbmatriculacurso'], $row['tbmatriculafecha'], $row['tbmatriculaactivo']);
             array_push($matriculas, $matricula);
         }
 
@@ -41,7 +41,7 @@ class dataMatricula extends Data
         $matricula = null;
 
         if ($row = $result->fetch_assoc()) {
-            $matricula = new Matricula($row['tbmatriculaid'], $row['tbmatriculaestudiante'], $row['tbmatriculaprofesor'], $row['tbmatriculacurso'], $row['tbmatriculafecha'], $row['tbmatriculaactivo']);
+            $matricula = new Matricula($row['tbmatriculaid'], $row['tbmatriculaestudiante'], $row['tbmatriculacurso'], $row['tbmatriculafecha'], $row['tbmatriculaactivo']);
         }
 
         return $matricula;
@@ -51,7 +51,7 @@ class dataMatricula extends Data
     public function updateMatricula($matricula)
     {
         $sql = "UPDATE tbmatricula SET 
-                tbmatriculaestudiante = '" . $matricula->getIdEstudiante() . "', tbmatriculaprofesor = '" . $matricula->getIdProfesor() . "', tbmatriculacurso = '" . $matricula->getIdCurso() . "',
+                tbmatriculaestudiante = '" . $matricula->getIdEstudiante() . "', tbmatriculacurso = '" . $matricula->getIdCurso() . "',
                 tbmatriculafecha = '" . $matricula->getFecha() . "' 
             WHERE tbmatriculaid = " . $matricula->getId();
         $result = $this->conn->query($sql);
@@ -104,15 +104,19 @@ class dataMatricula extends Data
 }
 
 public function getCursoByEstudiante($idEstudiante) {
-    $sql = "SELECT m.tbmatriculaid,   
-                   c.tbcursonombre, 
-                   c.tbcursosigla, 
-                   p.tbprofesornombre, 
-                   p.tbprofesorapellidos, 
-                   m.tbmatriculaactivo 
+    $sql = "SELECT 
+                m.tbmatriculaid,   
+                c.tbcursonombre, 
+                c.tbcursosigla, 
+                c.tbcursogrupo,
+                p.tbprofesornombre, 
+                p.tbprofesorapellidos, 
+                ci.tbciclonombre,
+                m.tbmatriculaactivo 
             FROM tbmatricula m
             JOIN tbcurso c ON m.tbmatriculacurso = c.tbcursoid
-            JOIN tbprofesor p ON m.tbmatriculaprofesor = p.tbprofesorid
+            JOIN tbprofesor p ON c.tbcursoidprofesor = p.tbprofesorid
+            JOIN tbciclo ci ON c.tbcursoidciclo = ci.tbcicloid
             WHERE m.tbmatriculaestudiante = $idEstudiante";
 
     $result = $this->conn->query($sql);
@@ -123,8 +127,10 @@ public function getCursoByEstudiante($idEstudiante) {
             $row['tbmatriculaid'],  
             $row['tbcursonombre'], 
             $row['tbcursosigla'], 
+            $row['tbcursogrupo'], 
             $row['tbprofesornombre'], 
             $row['tbprofesorapellidos'], 
+            $row['tbciclonombre'], 
             $row['tbmatriculaactivo']  
         );
     }
@@ -132,6 +138,8 @@ public function getCursoByEstudiante($idEstudiante) {
     mysqli_close($this->conn);
     return $cursoDetalles;  
 }
+
+
 
 
 

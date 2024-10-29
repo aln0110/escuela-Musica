@@ -14,9 +14,6 @@
             <label for="Estuidiante">Cedula del estudiante</label><br>
             <input type="text" id="cedulaEst" name="cedulaEst" required><br>
 
-            <label for="profesor">Cedula del profesor</label><br>
-            <input type="text" id="cedulaPro" name="cedulaPro" required><br>
-
             <label for="Curso">Sigla del curso</label><br>
             <input type="text" id="sigla" name="sigla" required><br>
 

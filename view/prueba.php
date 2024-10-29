@@ -16,6 +16,8 @@ if (empty($cursosDetalles)) {
         echo "ID: " . $curso->getIdCurso() . "<br>";
         echo "Curso: " . $curso->getNombreCurso() . "<br>";
         echo "Siglas: " . $curso->getSiglasCurso() . "<br>";
+        echo "Grupo: " . $curso->getCursoGrupo() . "<br>";
+        echo "Ciclo: " . $curso->getCicloNombre() . "<br>";
         echo "Profesor: " . $curso->getNombreProfesor() . " " . $curso->getApellidoProfesor() . "<br>";
         echo "Estado Activo: " . ($curso->isActivo() ? "Sí" : "No") . "<br><br>";
     }

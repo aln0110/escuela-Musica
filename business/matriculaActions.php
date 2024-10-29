@@ -11,7 +11,7 @@ if (isset($_POST['create'])) {
     $cursoBusiness = new CursoBusiness();
 
     $cedulaEst = $_POST['cedulaEst'];
-    $cedulaPro = $_POST['cedulaPro'];
+    
     $siglaCurso = $_POST['sigla'];
 
     if ($estudianteBusiness->estudianteExistsByCedula($cedulaEst) != true) {
@@ -30,13 +30,13 @@ if (isset($_POST['create'])) {
             </script>";
             exit();
         } else {
-            if (isset($_POST['cedulaEst']) && isset($_POST['cedulaPro']) && isset($_POST['sigla'])) {
+            if (isset($_POST['cedulaEst'])  && isset($_POST['sigla'])) {
 
                 $idEstudiante = $estudianteBusiness->getEstudianteIdByCedula($cedulaEst);
-                $idProfesor = $profesorBusiness->getProfesorIdByCedula($cedulaPro);
+              
                 $idCurso = $cursoBusiness->getCursoIdBySigla($siglaCurso);
 
-                if ($idEstudiante && $idProfesor && $idCurso) {
+                if ($idEstudiante  && $idCurso) {
                     $fechaMatricula = date("Y-m-d");
                     $matricula = new Matricula(0, $idEstudiante,  $idCurso, $fechaMatricula, 1);
 

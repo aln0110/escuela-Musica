@@ -15,6 +15,8 @@
                 <th>ID</th>
                 <th>Curso</th>
                 <th>Siglas</th>
+                <th>Grupo</th>
+                <th>Ciclo</th>
                 <th>Profesor</th>
                 <th>Activo</th>
                 <th>Acciones</th>
@@ -50,6 +52,8 @@
                             echo "<td>" . $curso->getIdCurso() . "</td>";
                             echo "<td>" . $curso->getNombreCurso() . "</td>";
                             echo "<td>" . $curso->getSiglasCurso() . "</td>";
+                            echo "<td>" . $curso->getCursoGrupo() . "</td>";
+                            echo "<td>" . $curso->getCicloNombre() . "</td>";
                             echo "<td>" . $curso->getNombreProfesor() . " " . $curso->getApellidoProfesor() . "</td>";
                             echo "<td>" . ($curso->isActivo() ? "Sí" : "No") . "</td>";
                             echo "<td>";

@@ -1,6 +1,6 @@
 <?php
-include 'data.php';
-include '../domain/ciclo.php';
+include_once 'data.php';
+include_once '../domain/ciclo.php';
 
 class dataCiclo extends Data{
     public function insertCiclo($ciclo){

@@ -9,8 +9,11 @@
     private $estado;
     private $iniHora;
     private $finHora;
+    private $grupo;
+    private $idCiclo;
+    private $idProfesor;
 
-    public function __construct($id="", $nombre="", $siglas="", $requisito="", $corequisito="", $creditos="", $estado="", $iniHora="", $finHora=""){
+    public function __construct($id="", $nombre="", $siglas="", $requisito="", $corequisito="", $creditos="", $estado="", $iniHora="", $finHora="",  $grupo="", $idCiclo="", $idProfesor=""){
         $this->id = $id;
         $this->nombre = $nombre;
         $this->siglas = $siglas;
@@ -20,13 +23,17 @@
         $this->estado = $estado;
         $this->iniHora = $iniHora;
         $this->finHora = $finHora;
+        $this->grupo = $grupo;
+        $this->idCiclo = $idCiclo;
+        $this->idProfesor = $idProfesor;
+
     }
 
     public function setId($id){
         $this->id = $id;
     }
 
-    public function getId(){
+    public function getId(){ 
         return $this->id;
     }
 
@@ -93,6 +100,32 @@
     public function getFinHora(){
         return $this->finHora;
     }
+
+    public function setGrupo($grupo){
+        $this->grupo = $grupo;
+    }
+
+    public function getGrupo(){
+        return $this->grupo;
+    }
+
+    public function setIdCiclo($idCiclo){
+        $this->idCiclo = $idCiclo;
+    }
+
+    public function getIdCiclo(){
+        return $this->idCiclo;
+    }
+
+    public function setIdProfesor($idProfesor){
+        $this->idProfesor = $idProfesor;
+    }
+
+    public function getIdProfesor(){
+        return $this->idProfesor;
+    }
+
+    
 
 
 

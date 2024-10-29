@@ -5,8 +5,8 @@ include_once "../domain/curso.php";
 class dataCurso extends Data {
 
     public function insertCurso($curso) {
-        $sql = "INSERT INTO tbCurso (tbcursonombre, tbcursosigla, tbcursorequisito, tbcursocorrequisito, tbcursocreditos, tbcursoinihora, tbcursofinhora, tbcursoactivo) VALUES 
-        ('" . $curso->getNombre() . "', '" . $curso->getSiglas() . "', '" . $curso->getRequisito() . "', '" . $curso->getCorequisito() . "', '" . $curso->getCreditos() . "', '" . $curso->getIniHora() . "', '" . $curso->getFinHora() . "', '" . $curso->getEstado() . "')";
+        $sql = "INSERT INTO tbCurso (tbcursonombre, tbcursosigla, tbcursorequisito, tbcursocorrequisito, tbcursocreditos, tbcursoinihora, tbcursofinhora, tbcursoactivo, tbcursogrupo, tbcursoidciclo, tbcursoidprofesor) VALUES 
+        ('" . $curso->getNombre() . "', '" . $curso->getSiglas() . "', '" . $curso->getRequisito() . "', '" . $curso->getCorequisito() . "', '" . $curso->getCreditos() . "', '" . $curso->getIniHora() . "', '" . $curso->getFinHora() . "', '" . $curso->getEstado() . "', '" . $curso->getGrupo() . "', '" . $curso->getIdCiclo() . "', '" . $curso->getIdProfesor() . "')";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         return $result;
@@ -36,7 +36,7 @@ class dataCurso extends Data {
     }
 
     public function updateCurso($curso) {
-        $sql = "UPDATE tbCurso SET tbcursonombre = '" . $curso->getNombre() . "', tbcursosigla = '" . $curso->getSiglas() . "', tbcursorequisito = '" . $curso->getRequisito() . "', tbcursocorrequisito = '" . $curso->getCorequisito() . "', tbcursocreditos = '" . $curso->getCreditos() . "', tbcursoinihora = '" . $curso->getIniHora() . "', tbcursofinhora = '" . $curso->getFinHora() . "', tbcursoactivo = '" . $curso->getEstado() . "' WHERE tbcursoid = " . $curso->getId();
+        $sql = "UPDATE tbCurso SET tbcursonombre = '" . $curso->getNombre() . "', tbcursosigla = '" . $curso->getSiglas() . "', tbcursorequisito = '" . $curso->getRequisito() . "', tbcursocorrequisito = '" . $curso->getCorequisito() . "', tbcursocreditos = '" . $curso->getCreditos() . "', tbcursoinihora = '" . $curso->getIniHora() . "', tbcursofinhora = '" . $curso->getFinHora() . "', tbcursoactivo = '" . $curso->getEstado() . "', tbcursoGrupo = '" . $curso->getGrupo() . "', tbcursoIdCiclo = '" . $curso->getIdCiclo() . "', tbcursoIdProfesor = '" . $curso->getIdProfesor() . "' WHERE tbcursoid = " . $curso->getId();
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         return $result;

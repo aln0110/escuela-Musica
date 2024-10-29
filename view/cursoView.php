@@ -19,7 +19,7 @@
             </thead>
             <tbody>
             <?php
-            include '../business/cursoBusiness.php';
+            include_once '../business/cursoBusiness.php';
             $cursoBusiness = new cursoBusiness();
             $cursos = $cursoBusiness->getCursos();
             
@@ -59,6 +59,24 @@
             <label for="siglas">Siglas</label><br>
             <input type="text" id="siglas" name="siglas" required><br>
 
+            <label for="grupo">Grupo</label><br>
+            <input type="number" id="grupo" name="grupo" value="1" ><br>
+
+            <label for="ciclo">Ciclo</label><br>
+            <select name="ciclo" id="ciclo" required>
+                <option value="">Seleccione un ciclo</option>
+                <?php
+                include_once '../business/cicloBusiness.php';
+                $cicloBusiness = new CicloBusiness();
+                $ciclos = $cicloBusiness->getCiclos();
+                foreach ($ciclos as $ciclo) {
+                   if($ciclo->getEstadoCiclo()==1){
+                    echo "<option value='" . $ciclo->getIdCiclo() . "'>" . $ciclo->getNombreCiclo() . "</option>";
+                   }
+                }
+                ?>
+            </select> <br>
+
             <label for="requisito">Requisito</label><br>
             <input type="text" id="requisito" name="requisito" required><br>
 
@@ -67,6 +85,9 @@
             
             <label for="creditos">Creditos</label><br>
             <input type="number" id="creditos" name="creditos" required><br>
+
+            <label for="profesor">Cedula profesor</label><br>
+            <input type="text" name="profesor" id="profesor" required> <br>
 
             <label for="horaInicio">Hora de inicio</label><br>
             <input type="time" id="horaInicio" name="horaInicio" required><br>

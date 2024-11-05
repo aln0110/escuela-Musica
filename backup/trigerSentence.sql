@@ -1,3 +1,5 @@
+
+--crear matriculas 
 DELIMITER //
 
 CREATE TRIGGER afterMatriculaInsert
@@ -10,6 +12,38 @@ END//
 
 DELIMITER ;
 
+
+--deletos logicos
+DELIMITER //
+
+CREATE TRIGGER afterMatriculaUpdate
+AFTER UPDATE ON tbmatriculadetalle
+FOR EACH ROW
+BEGIN
+
+    IF OLD.tbmatriculadetalleestado <> NEW.tbmatriculadetalleestado THEN
+        IF NEW.tbmatriculadetalleestado = 1 THEN
+
+            UPDATE tbmatricula
+            SET tbmatriculaactivo = 1 
+            WHERE tbmatriculaid = OLD.tbmatriculadetallematriculaid;  --
+        ELSEIF NEW.tbmatriculadetalleestado = 0 THEN
+
+            UPDATE tbmatricula
+            SET tbmatriculaactivo = 0 
+            WHERE tbmatriculaid = OLD.tbmatriculadetallematriculaid;  
+        END IF;
+    END IF;
+END //
+
+DELIMITER ;
+
+
+
+
+
+
+--sentencia diabolica del select 
 SELECT 
     d.tbmatriculadetalleid,
     d.tbmatriculadetallenota,

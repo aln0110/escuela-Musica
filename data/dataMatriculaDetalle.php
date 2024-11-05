@@ -28,7 +28,7 @@ JOIN  tbestudiante e ON m.tbmatriculaestudiante = e.tbestudianteid
 JOIN  tbcurso c ON m.tbmatriculacurso = c.tbcursoid
 JOIN  tbprofesor p ON c.tbcursoidprofesor = p.tbprofesorid
 JOIN  tbciclo ci ON c.tbcursoidciclo = ci.tbcicloid
-WHERE  m.tbmatriculaestudiante = $id; ";
+WHERE  m.tbmatriculaestudiante = $id AND d.tbmatriculadetalleestado =1;  ";
 
         $result = $this->conn->query($sql);
 

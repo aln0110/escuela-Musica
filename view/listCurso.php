@@ -61,22 +61,25 @@
                             echo "Cursos del estudiante: " . $matriculasDetalles[0]->getNombreEstudiante() . " " . $matriculasDetalles[0]->getApellidoEstudiante() . "<br>";
                         }
                         foreach ($matriculasDetalles as $matriculas) {
-                            echo "<tr>";
-                            echo "<td>" . $matriculas->getId() . "</td>";
-                            echo "<td>" . $matriculas->getNombreCurso() . "</td>";
-                            echo "<td>" . $matriculas->getSiglasCurso() . "</td>";
-                            echo "<td>" . $matriculas->getCursoGrupo() . "</td>";
-                            echo "<td>" . $matriculas->getCicloNombre() . "</td>";
-                            echo "<td>" . $matriculas->getNombreProfesor() . " " . $matriculas->getApellidoProfesor() . "</td>";
-                            echo "<td>" . $matriculas->getNota() . "</td>";
-                            echo "<td>" . ($matriculas->isActivo() ? "Sí" : "No") . "</td>";
-                            echo "<td>";
-                            echo "<form method='post' action='../business/matriculaActions.php' style='display:inline;'> ";
-                            echo "<input type='hidden' name='idMatricula' value='" . $matriculas->getId() . "'>";
-                            echo "<input type='submit' value='Eliminar' name='delete'>";
-                            echo "</form>";
-                            echo "</td>";
-                            echo "</tr>";
+                            if($matriculas->isActivo()==1){
+                                echo "<tr>";
+                                echo "<td>" . $matriculas->getId() . "</td>";
+                                echo "<td>" . $matriculas->getNombreCurso() . "</td>";
+                                echo "<td>" . $matriculas->getSiglasCurso() . "</td>";
+                                echo "<td>" . $matriculas->getCursoGrupo() . "</td>";
+                                echo "<td>" . $matriculas->getCicloNombre() . "</td>";
+                                echo "<td>" . $matriculas->getNombreProfesor() . " " . $matriculas->getApellidoProfesor() . "</td>";
+                                echo "<td>" . $matriculas->getNota() . "</td>";
+                                echo "<td>" . ($matriculas->isActivo() ? "Sí" : "No") . "</td>";
+                                echo "<td>";
+                                echo "<form method='post' action='../business/matriculaDetallesActions.php' style='display:inline;'> ";
+                                echo "<input type='hidden' name='id' value='" . $matriculas->getId() . "'>";
+                                echo "<input type='submit' value='Eliminar' name='delete'>";
+                                echo "</form>";
+                                echo "</td>";
+                                echo "</tr>";
+                            }
+
                         }
                     }
                 }

@@ -13,23 +13,50 @@ if (isset($_POST['save'])) {
             $result = $matriculaDetalleBusiness->updateNota($idMatricula, $nota);
 
             if ($result) {
-                header("Location: ../view/notaEdit.php?success=updated");
+                header("Location: /index.php?success=updated");
                 exit(); 
             } else {
-                header("Location: ../view/notaEdit.php?error=dbError");
+                header("Location: /index.php?error=dbError");
                 exit(); 
             }
         } else {
 
-            header("Location: ../view/notaEdit.php?error=emptyField");
+            header("Location: /index.php?error=emptyField");
             exit();
         }
     } else {
 
-        header("Location: ../view/notaEdit.php?error=missingFields");
+        header("Location: /index.php?error=missingFields");
         exit();
     }
-}  else {
+}  elseif(isset($_POST['delete'])) {
+    if (isset($_POST['id'])) {
+        $idMatricula = $_POST['id'];
+
+        if (strlen($idMatricula) > 0) {
+            $matriculaDetalleBusiness = new matriculaDetalleBusiness();
+            $result = $matriculaDetalleBusiness->logicalDelete($idMatricula);
+
+            if ($result) {
+                header("Location: /index.php?success=deleted");
+                exit(); 
+            } else {
+                header("Location: /index.php?error=dbError");
+                exit(); 
+            }
+        } else {
+
+            header("Location: /index.php?error=emptyField");
+            exit();
+        }
+    } else {
+
+        header("Location: /index.php?error=missingFields");
+        exit();
+    }
+} else {
+    header("Location: /index.php");
+    exit();
 
 
 }

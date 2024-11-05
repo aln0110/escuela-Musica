@@ -37,4 +37,8 @@ JOIN
 JOIN 
     tbciclo ci ON c.tbcursoidciclo = ci.tbcicloid
 WHERE 
-    m.tbmatriculaestudiante = 1;  
+    m.tbmatriculaestudiante = 1; 
+
+
+    INSERT into tbmatriculadetalle (0, 1, 80, 1)
+    INSERT into tbmatriculadetalle (0, 2, 80, 1)

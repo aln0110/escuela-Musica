@@ -13,23 +13,24 @@ if (isset($_POST['save'])) {
             $result = $matriculaDetalleBusiness->updateNota($idMatricula, $nota);
 
             if ($result) {
-                header("Location: ../view/notaView.php?success=updated");
+                header("Location: ../view/notaEdit.php?success=updated");
                 exit(); 
             } else {
-                header("Location: ../view/notaView.php?error=dbError");
+                header("Location: ../view/notaEdit.php?error=dbError");
                 exit(); 
             }
         } else {
 
-            header("Location: ../view/notaView.php?error=emptyField");
+            header("Location: ../view/notaEdit.php?error=emptyField");
             exit();
         }
     } else {
 
-        header("Location: ../view/notaView.php?error=missingFields");
+        header("Location: ../view/notaEdit.php?error=missingFields");
         exit();
     }
 }  else {
+
 
 }
 ?>

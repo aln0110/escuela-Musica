@@ -46,8 +46,13 @@
     <b>Link to the matricula page</b>
     <a href="view/matriculaView.php">Matricula</a><br>
 
+    <b>Link to nota page</b>
+    <a href="view/notaView.php">Nota</a><br>
+
     <b>Link to the prueba page</b>
     <a href="view/prueba.php">Prueba</a><br>
+
+
 
 
     

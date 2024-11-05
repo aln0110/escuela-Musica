@@ -1,6 +1,6 @@
 <?php
 include_once 'data.php';
-include_once '../domain/matriculaDetalles.php';
+include_once '../domain/detallesMatricula.php';
 
 class dataMatriculaDetalles extends Data
 {
@@ -15,7 +15,7 @@ class dataMatriculaDetalles extends Data
     m.tbmatriculaid,
     m.tbmatriculaactivo,
     e.tbEstudianteNombre,
-    e.tbEstudianteApellidos,
+    e.tbEstudianteApellido,
     c.tbcursonombre,
     c.tbcursosigla,
     c.tbcursogrupo,
@@ -36,18 +36,17 @@ WHERE  m.tbmatriculaestudiante = $id; ";
         while ($row = $result->fetch_assoc()) {
             $matriculaDetalles[] = new matriculaDetalles(
                 $row['tbmatriculadetalleid'],
-                $row['tbmatriculadetallenota'],
-                $row['tbmatriculadetalleestado'],
-                $row['tbmatriculaid'],
-                $row['tbmatriculaactivo'],
-                $row['tbEstudianteNombre'],
-                $row['tbEstudianteApellidos'],
                 $row['tbcursonombre'],
                 $row['tbcursosigla'],
                 $row['tbcursogrupo'],
+                $row['tbEstudianteNombre'],
+                $row['tbEstudianteApellido'],
                 $row['tbprofesornombre'],
                 $row['tbprofesorapellidos'],
-                $row['tbciclonombre']
+                $row['tbciclonombre'],
+                $row['tbmatriculadetallenota'],
+                $row['tbmatriculadetalleestado'],
+
             );
         }
 

@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/view/css/table.css">
-    <title>Document</title>
+    <title>Editar notas</title>
 </head>
-
 <body>
-    <div>
+<div>
         <table>
             <thead>
                 <th>ID</th>
@@ -17,11 +15,8 @@
                 <th>Siglas</th>
                 <th>Grupo</th>
                 <th>Ciclo</th>
-                <th>Profesor</th>
                 <th>Nota</th>
-                
-                <th>Activo</th>
-                <th>Acciones</th>
+                <th>Digite</th>
             </thead>
             <tbody>
                 <?php
@@ -40,7 +35,7 @@
                 if ($estudianteBusiness->estudianteExistsByCedula($cedulaEst) != true) {
                     echo "<script>
                             alert('Este estudainte no existe');
-                             window.location.href = '../view/matriculaView.php';
+                             window.location.href = '../view/notaView.php';
                          </script>";
                     exit();
                 } else {
@@ -54,12 +49,10 @@
                     $matriculasDetalles = $matricualDetalleBusiness->getMatriculaDetalleByEstudent($idEstudiante);
 
 
-                    if (empty($matriculasDetalles)) {
+                    if (empty($cursosDetalles)) {
                         echo "No se encontraron cursos para el estudiante con ID $idEstudiante.<br>";
                     } else {
-                        if (!empty($matriculasDetalles)) {
-                            echo "Cursos del estudiante: " . $matriculasDetalles[0]->getNombreEstudiante() . " " . $matriculasDetalles[0]->getApellidoEstudiante() . "<br>";
-                        }
+                        echo "Notas del estudiante:" . $matriculasDetalles[0]->getNombreEstudiante(). " " . $matriculasDetalles[0]->getApellidoEstudiante() . "<br>";
                         foreach ($matriculasDetalles as $matriculas) {
                             echo "<tr>";
                             echo "<td>" . $matriculas->getId() . "</td>";
@@ -67,15 +60,17 @@
                             echo "<td>" . $matriculas->getSiglasCurso() . "</td>";
                             echo "<td>" . $matriculas->getCursoGrupo() . "</td>";
                             echo "<td>" . $matriculas->getCicloNombre() . "</td>";
-                            echo "<td>" . $matriculas->getNombreProfesor() . " " . $matriculas->getApellidoProfesor() . "</td>";
                             echo "<td>" . $matriculas->getNota() . "</td>";
-                            echo "<td>" . ($matriculas->isActivo() ? "Sí" : "No") . "</td>";
                             echo "<td>";
-                            echo "<form method='post' action='../business/matriculaActions.php' style='display:inline;'> ";
-                            echo "<input type='hidden' name='idMatricula' value='" . $matriculas->getId() . "'>";
-                            echo "<input type='submit' value='Eliminar' name='delete'>";
+                            echo "<form method='post' action='../business/matriculaDetallesActions.php' style='display:inline;'>";
+                            echo "<label for='nota'>Digite la nota</label><br>";
+                            echo "<input type='text' name='nota' id='nota' required><br>";
+                            echo "<input type='hidden' name='id' value='" .  $matriculas->getId() . "'>";
+                            echo "<input type='submit' value='Guardar' name='save'>";
                             echo "</form>";
-                            echo "</td>";
+                            
+                            echo "</td>:";
+                        
                             echo "</tr>";
                         }
                     }
@@ -85,13 +80,13 @@
                 ?>
 
             </tbody>
-        </table>
 
+        </table>
+    </div>
+    <div>
 
     </div>
-    <a href="../view/matriculaView.php">Volver</a>
 
-
+    <a href="/view/notaView.php">Volver</a>
 </body>
-
 </html>

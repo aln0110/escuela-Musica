@@ -69,39 +69,7 @@ class dataMatricula extends Data
     }
 
 
-    public function getMatriculaDetails($idEstudiante)
-{
-    $sql = "SELECT m.tbmatriculaid, 
-                   c.tbcursonombre, 
-                   c.tbcursosigla, 
-                   CONCAT(e.tbEstudianteNombre, ' ', e.tbEstudianteApellido) AS estudianteNombreCompleto, 
-                   CONCAT(p.tbprofesornombre, ' ', p.tbprofesorapellidos) AS profesorNombreCompleto, 
-                   m.tbmatriculafecha,
-                   m.tbmatriculaactivo
-            FROM tbmatricula m
-            JOIN tbcurso c ON m.tbmatriculacurso = c.tbcursoid
-            JOIN tbestudiante e ON m.tbmatriculaestudiante = e.tbEstudianteID
-            JOIN tbprofesor p ON m.tbmatriculaprofesor = p.tbprofesorid
-            WHERE m.tbmatriculaestudiante = $idEstudiante";
 
-    $result = $this->conn->query($sql);
-    $matriculaDetails = null;  
-
-    while ($row = $result->fetch_assoc()) {
-        $matriculaDetails = new MatriculaDetails(
-            $row['tbmatriculaid'], 
-            $row['tbcursonombre'], 
-            $row['tbcursosigla'], 
-            $row['estudianteNombreCompleto'], 
-            $row['profesorNombreCompleto'], 
-            $row['tbmatriculafecha'],
-            $row['tbmatriculaactivo']  
-        );
-    }
-
-    mysqli_close($this->conn);
-    return $matriculaDetails;  
-}
 
 public function getCursoByEstudiante($idEstudiante) {
     $sql = "SELECT 

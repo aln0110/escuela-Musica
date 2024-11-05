@@ -36,12 +36,6 @@ class matriculaBusiness
         return $this->dataMatricula->logicalDeleteMatricula($idMatricula);
     }
 
-
-    public function getMatriculaDetails($idMatricula)
-    {
-        return $this->dataMatricula->getMatriculaDetails($idMatricula);
-    }
-
     public function getCursoByEstudiante($idEstudiante)
     {
         return $this->dataMatricula->getCursoByEstudiante($idEstudiante);

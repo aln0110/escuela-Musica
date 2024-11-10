@@ -5,7 +5,7 @@ include_once "../domain/curso.php";
 class dataCurso extends Data {
 
     public function insertCurso($curso) {
-        $sql = "INSERT INTO tbCurso (tbcursonombre, tbcursosigla, tbcursorequisito, tbcursocorrequisito, tbcursocreditos, tbcursoinihora, tbcursofinhora, tbcursoactivo, tbcursogrupo, tbcursoidciclo, tbcursoidprofesor) VALUES 
+        $sql = "INSERT INTO tbcurso (tbcursonombre, tbcursosigla, tbcursorequisito, tbcursocorrequisito, tbcursocreditos, tbcursoinihora, tbcursofinhora, tbcursoactivo, tbcursogrupo, tbcursoidciclo, tbcursoidprofesor) VALUES 
         ('" . $curso->getNombre() . "', '" . $curso->getSiglas() . "', '" . $curso->getRequisito() . "', '" . $curso->getCorequisito() . "', '" . $curso->getCreditos() . "', '" . $curso->getIniHora() . "', '" . $curso->getFinHora() . "', '" . $curso->getEstado() . "', '" . $curso->getGrupo() . "', '" . $curso->getIdCiclo() . "', '" . $curso->getIdProfesor() . "')";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
@@ -13,7 +13,7 @@ class dataCurso extends Data {
     }
 
     public function getCursos() {
-        $sql = "SELECT * FROM tbCurso";
+        $sql = "SELECT * FROM tbcurso";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         $cursos = [];
@@ -25,7 +25,7 @@ class dataCurso extends Data {
     }
 
     public function getCurso($idCurso) {
-        $sql = "SELECT * FROM tbCurso WHERE tbcursoid = $idCurso";
+        $sql = "SELECT * FROM tbcurso WHERE tbcursoid = $idCurso";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         $curso = null;
@@ -36,7 +36,7 @@ class dataCurso extends Data {
     }
 
     public function getCursosActivo() {
-        $sql = "SELECT * FROM tbCurso where tbcursoactivo = 1";
+        $sql = "SELECT * FROM tbcurso where tbcursoactivo = 1";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         $cursos = [];
@@ -48,21 +48,21 @@ class dataCurso extends Data {
     }
 
     public function updateCurso($curso) {
-        $sql = "UPDATE tbCurso SET tbcursonombre = '" . $curso->getNombre() . "', tbcursosigla = '" . $curso->getSiglas() . "', tbcursorequisito = '" . $curso->getRequisito() . "', tbcursocorrequisito = '" . $curso->getCorequisito() . "', tbcursocreditos = '" . $curso->getCreditos() . "', tbcursoinihora = '" . $curso->getIniHora() . "', tbcursofinhora = '" . $curso->getFinHora() . "', tbcursoactivo = '" . $curso->getEstado() . "', tbcursoGrupo = '" . $curso->getGrupo() . "', tbcursoIdCiclo = '" . $curso->getIdCiclo() . "', tbcursoIdProfesor = '" . $curso->getIdProfesor() . "' WHERE tbcursoid = " . $curso->getId();
+        $sql = "UPDATE tbcurso SET tbcursonombre = '" . $curso->getNombre() . "', tbcursosigla = '" . $curso->getSiglas() . "', tbcursorequisito = '" . $curso->getRequisito() . "', tbcursocorrequisito = '" . $curso->getCorequisito() . "', tbcursocreditos = '" . $curso->getCreditos() . "', tbcursoinihora = '" . $curso->getIniHora() . "', tbcursofinhora = '" . $curso->getFinHora() . "', tbcursoactivo = '" . $curso->getEstado() . "', tbcursoGrupo = '" . $curso->getGrupo() . "', tbcursoIdCiclo = '" . $curso->getIdCiclo() . "', tbcursoIdProfesor = '" . $curso->getIdProfesor() . "' WHERE tbcursoid = " . $curso->getId();
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         return $result;
     }
 
     public function deleteCurso($idCurso) {
-        $sql = "DELETE FROM tbCurso WHERE tbcursoid = $idCurso";
+        $sql = "DELETE FROM tbcurso WHERE tbcursoid = $idCurso";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         return $result;
     }
 
     public function logicalDeleteCurso($idCurso) {
-        $sql = "UPDATE tbCurso SET tbcursoactivo = 0 WHERE tbcursoid = $idCurso";
+        $sql = "UPDATE tbcurso SET tbcursoactivo = 0 WHERE tbcursoid = $idCurso";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         return $result;
@@ -70,7 +70,7 @@ class dataCurso extends Data {
 
     public function getCursoIdBySigla($sigla) {
         
-        $sql = "SELECT tbcursoid FROM tbCurso WHERE tbcursosigla = '$sigla'";
+        $sql = "SELECT tbcursoid FROM tbcurso WHERE tbcursosigla = '$sigla'";
         $result = $this->conn->query($sql);
         
         if ($result->num_rows > 0) {
@@ -85,7 +85,7 @@ class dataCurso extends Data {
 
     public function cursoExistsBySigla($sigla) {
         
-        $sql = "SELECT tbcursoid FROM tbCurso WHERE tbcursosigla = '$sigla'";
+        $sql = "SELECT tbcursoid FROM tbcurso WHERE tbcursosigla = '$sigla'";
         $result = $this->conn->query($sql);
         
         if ($result->num_rows > 0) {

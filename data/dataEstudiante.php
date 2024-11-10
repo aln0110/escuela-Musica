@@ -1,10 +1,10 @@
 <?php
 include_once "data.php";
-include_once "../domain/Estudiante.php";
+include_once "../domain/estudiante.php";
 
 class dataEstudiante extends Data{
     public function insertEstudiante($estudiante){
-        $sql = "INSERT INTO tbEstudiante (tbEstudianteNombre, tbEstudianteApellido, tbEstudiantetelefono, tbEstudiantecorreo, tbEstudiantedireccion, tbEstudiantetipoidentificacion, tbEstudiantefechanacimiento, tbEstudiantecedula, tbEstudianteestado) VALUES
+        $sql = "INSERT INTO tbestudiante (tbEstudianteNombre, tbEstudianteApellido, tbEstudiantetelefono, tbEstudiantecorreo, tbEstudiantedireccion, tbEstudiantetipoidentificacion, tbEstudiantefechanacimiento, tbEstudiantecedula, tbEstudianteestado) VALUES
         ('" . $estudiante->getNombre() . "', '" . $estudiante->getApellido() . "', '" . $estudiante->getTelefono() . "', '" . $estudiante->getCorreo() . "', '" . $estudiante->getDireccion() . "', '" . $estudiante->getTipoIdentificacion() . "', '" . $estudiante->getFechaNacimiento() . "', '" . $estudiante->getCedula() . "', '" . $estudiante->getEstado() . "')";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
@@ -12,7 +12,7 @@ class dataEstudiante extends Data{
     }
 
     public function getEstudiantes(){
-        $sql = "SELECT * FROM tbEstudiante";
+        $sql = "SELECT * FROM tbestudiante";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         $estudiantes = [];
@@ -24,7 +24,7 @@ class dataEstudiante extends Data{
     }
 
     public function getEstudiante($idEstudiante){
-        $sql = "SELECT * FROM tbEstudiante WHERE tbEstudianteID = $idEstudiante";
+        $sql = "SELECT * FROM tbestudiante WHERE tbEstudianteID = $idEstudiante";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         while ($row = $result->fetch_assoc()) {
@@ -34,21 +34,21 @@ class dataEstudiante extends Data{
     }
 
     public function updateEstudiante($estudiante){
-        $sql = "UPDATE tbEstudiante SET tbEstudianteNombre = '" . $estudiante->getNombre() . "', tbEstudianteApellido = '" . $estudiante->getApellido() . "', tbEstudiantetelefono = '" . $estudiante->getTelefono() . "', tbEstudiantecorreo = '" . $estudiante->getCorreo() . "', tbEstudiantedireccion = '" . $estudiante->getDireccion() . "', tbEstudiantetipoidentificacion = '" . $estudiante->getTipoIdentificacion() . "', tbEstudiantefechanacimiento = '" . $estudiante->getFechaNacimiento() . "', tbEstudiantecedula = '" . $estudiante->getCedula() . "', tbEstudianteestado = '" . $estudiante->getEstado() . "' WHERE tbEstudianteID = " . $estudiante->getId();
+        $sql = "UPDATE tbestudiante SET tbEstudianteNombre = '" . $estudiante->getNombre() . "', tbEstudianteApellido = '" . $estudiante->getApellido() . "', tbEstudiantetelefono = '" . $estudiante->getTelefono() . "', tbEstudiantecorreo = '" . $estudiante->getCorreo() . "', tbEstudiantedireccion = '" . $estudiante->getDireccion() . "', tbEstudiantetipoidentificacion = '" . $estudiante->getTipoIdentificacion() . "', tbEstudiantefechanacimiento = '" . $estudiante->getFechaNacimiento() . "', tbEstudiantecedula = '" . $estudiante->getCedula() . "', tbEstudianteestado = '" . $estudiante->getEstado() . "' WHERE tbEstudianteID = " . $estudiante->getId();
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         return $result;
     }
 
     public function deleteEstudiante($idEstudiante){
-        $sql = "DELETE FROM tbEstudiante WHERE tbEstudianteID = $idEstudiante";
+        $sql = "DELETE FROM tbestudiante WHERE tbEstudianteID = $idEstudiante";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         return $result;
     }
 
     public function logicalDelteEstudiante($idEstudiante){
-        $sql = "UPDATE tbEstudiante SET tbEstudianteestado = 0 WHERE tbEstudianteID = $idEstudiante";
+        $sql = "UPDATE tbestudiante SET tbEstudianteestado = 0 WHERE tbEstudianteID = $idEstudiante";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         return $result;
@@ -56,7 +56,7 @@ class dataEstudiante extends Data{
 
     public function estudianteExistsByCedula($cedula) {
 
-        $sql = "SELECT * FROM tbEstudiante WHERE tbEstudiantecedula = '$cedula'";
+        $sql = "SELECT * FROM tbestudiante WHERE tbEstudiantecedula = '$cedula'";
         $result = $this->conn->query($sql);
         
 
@@ -71,7 +71,7 @@ class dataEstudiante extends Data{
 
     public function getEstudianteIdByCedula($cedula) {
 
-        $sql = "SELECT tbEstudianteid FROM tbEstudiante WHERE tbEstudiantecedula = '$cedula'";
+        $sql = "SELECT tbestudianteid FROM tbEstudiante WHERE tbEstudiantecedula = '$cedula'";
         $result = $this->conn->query($sql);
         
         if ($result->num_rows > 0) {
@@ -82,6 +82,14 @@ class dataEstudiante extends Data{
             mysqli_close($this->conn);
             return null;  
         }
+    }
+
+    public function cedulaExiste($cedula) {
+        $sql = "SELECT * FROM tbestudiante WHERE tbEstudiantecedula = '$cedula'";
+        $result = $this->conn->query($sql);
+        $exists = $result->num_rows > 0;
+        mysqli_close($this->conn);
+        return $exists;
     }
     
     

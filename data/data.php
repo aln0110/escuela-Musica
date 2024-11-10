@@ -3,7 +3,7 @@
 
 class Data
 {
-    public $server = "localhost";
+    public $server = "172.28.160.86";
     public $user = "root";
     public $password = "";
     public $db = "bdescuelamusica";

@@ -2,25 +2,34 @@
 include "categoriaBusiness.php";
 
 if (isset($_POST['create'])) {
-    if (isset($_POST['nombre']) ) {
-        $nombre = $_POST['nombre'];
-        $estado = 1;
+    $categoriaBusiness = new categoriaBusiness();
+    if ($categoriaBusiness->categoriaExist($_POST['nombre'])) {
+        echo "<script>
+    alert('Esta categoria ya existe');
+    window.location.href = '../view/categoriaView.php';
+  </script>";
+        exit();
+    } else {
+        if (isset($_POST['nombre'])) {
+            $nombre = $_POST['nombre'];
+            $estado = 1;
 
-        if (strlen($nombre) > 0 ) {
-            $categoria = new Categoria(0, $nombre, $estado);
-            $categoriaBusiness = new categoriaBusiness();
-            $result = $categoriaBusiness->insertCategoria($categoria);
+            if (strlen($nombre) > 0) {
+                $categoria = new Categoria(0, $nombre, $estado);
 
-            if ($result) {
-                header("location: ../view/categoriaView.php?success=inserted");
+                $result = $categoriaBusiness->insertCategoria($categoria);
+
+                if ($result) {
+                    header("location: ../view/categoriaView.php?success=inserted");
+                } else {
+                    header("location: ../view/categoriaView.php?error=dbError");
+                }
             } else {
-                header("location: ../view/categoriaView.php?error=dbError");
+                header("location: ../view/categoriaView.php?error=emptyField");
             }
         } else {
-            header("location: ../view/categoriaView.php?error=emptyField");
+            header("location: ../view/categoriaView.php?error=missingInfo");
         }
-    } else {
-        header("location: ../view/categoriaView.php?error=missingInfo");
     }
 } else if (isset($_POST['update'])) {
     $id = $_POST['id'];
@@ -58,10 +67,7 @@ if (isset($_POST['create'])) {
         } else {
             header("location: ../view/categoriaView.php?error=dbError");
         }
-       
     } else {
         header("location: ../view/categoriaView.php?error=missingInfo");
     }
-
-    
 }

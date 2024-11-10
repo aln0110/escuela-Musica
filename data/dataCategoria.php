@@ -53,5 +53,15 @@ class dataCategoria extends Data{
         mysqli_close($this->conn);
         return $result;
     }
+
+    public function categiriaExist($dato){
+        $sql = "SELECT * FROM tbcategoria WHERE tbcategorianombre = '$dato'";
+        $result = $this->conn->query($sql);
+        $exists = $result->num_rows > 0;
+       // mysqli_close($this->conn);
+        return $exists;
+
+        
+    }
 }
 ?>

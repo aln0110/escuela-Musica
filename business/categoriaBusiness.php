@@ -41,6 +41,10 @@ class categoriaBusiness
     {
         return $this->dataCategoria->logicalDeleteCategoria($idCategoria);
     }
+    public function categoriaExist($dato)
+    {
+        return $this->dataCategoria->categiriaExist($dato);
+    }
 }
 
 

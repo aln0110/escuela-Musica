@@ -35,6 +35,18 @@ class dataCurso extends Data {
         return $curso;
     }
 
+    public function getCursosActivo() {
+        $sql = "SELECT * FROM tbCurso where tbcursoactivo = 1";
+        $result = $this->conn->query($sql);
+        mysqli_close($this->conn);
+        $cursos = [];
+        while ($row = $result->fetch_assoc()) {
+            $curso = new curso($row["tbcursoid"], $row["tbcursonombre"], $row["tbcursosigla"], $row["tbcursorequisito"], $row["tbcursocorrequisito"], $row["tbcursocreditos"], $row["tbcursoinihora"], $row["tbcursofinhora"], $row["tbcursoactivo"]);
+            array_push($cursos, $curso);
+        }
+        return $cursos;
+    }
+
     public function updateCurso($curso) {
         $sql = "UPDATE tbCurso SET tbcursonombre = '" . $curso->getNombre() . "', tbcursosigla = '" . $curso->getSiglas() . "', tbcursorequisito = '" . $curso->getRequisito() . "', tbcursocorrequisito = '" . $curso->getCorequisito() . "', tbcursocreditos = '" . $curso->getCreditos() . "', tbcursoinihora = '" . $curso->getIniHora() . "', tbcursofinhora = '" . $curso->getFinHora() . "', tbcursoactivo = '" . $curso->getEstado() . "', tbcursoGrupo = '" . $curso->getGrupo() . "', tbcursoIdCiclo = '" . $curso->getIdCiclo() . "', tbcursoIdProfesor = '" . $curso->getIdProfesor() . "' WHERE tbcursoid = " . $curso->getId();
         $result = $this->conn->query($sql);

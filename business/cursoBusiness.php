@@ -49,6 +49,11 @@ class cursoBusiness
     {
         return $this->dataCurso->getCursoIdBySigla($sigla);
     }
+
+    public function getCursosActivo()
+    {
+        return $this->dataCurso->getCursosActivo();
+    }
 }
 
 

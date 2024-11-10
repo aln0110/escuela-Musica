@@ -2,7 +2,8 @@
 include 'data.php';
 include '../domain/junta.php';
 
-class dataJunta extends Data {
+class dataJunta extends Data
+{
 
     public function insertJunta($junta)
     {
@@ -10,9 +11,9 @@ class dataJunta extends Data {
            ('" . $junta->getNombrejunta() . "', '" . $junta->getIdentificacionjunta() . "', '" . $junta->getCedulajunta() . "', '" . $junta->getJuntapuesto() . "'
            , '" . $junta->getFechainiciojunta() . "', '" . $junta->getFechafinaljunta() . "', '" . $junta->getJuntaactivo() . "', '" . $junta->getTelefono() . "', '" . $junta->getCorreo() . "')";
 
-       $result = $this->conn->query($sql);
-       mysqli_close($this->conn);
-       return $result;
+        $result = $this->conn->query($sql);
+        mysqli_close($this->conn);
+        return $result;
     }
 
     public function getJuntas()
@@ -20,7 +21,7 @@ class dataJunta extends Data {
         $sql = "SELECT * FROM tbjunta";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
-         $juntas = [];
+        $juntas = [];
         while ($row = $result->fetch_assoc()) {
             $junta = new Junta($row['tbjuntaid'], $row['tbjuntanombre'], $row['tbjuntacedula'], $row['tbjuntapuesto'], $row['tbjuntafechainicio'], $row['tbjuntafechafinal'], $row['tbjuntaactivo'], $row['tbjuntaindentificacion'], $row['tbjuntatelefono'], $row['tbjuntacorreo']);
             array_push($juntas, $junta);
@@ -59,11 +60,21 @@ class dataJunta extends Data {
         return $result;
     }
 
-    public function logicalDelte($idjunta){
+    public function logicalDelte($idjunta)
+    {
         $sql = "UPDATE tbjunta SET tbjuntaactivo = 'False' WHERE tbjuntaid = $idjunta";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         return $result;
     }
+
+    public function verifyPuesto($puesto)
+    {
+
+        $sql = "SELECT * FROM tbjunta WHERE tbjuntapuesto = '$puesto'  and tbjuntaactivo = '1'"; ;
+        $result = $this->conn->query($sql);
+        $exists = $result->num_rows > 0;
+        //mysqli_close($this->conn);
+        return $exists;
+    }
 }
-?>

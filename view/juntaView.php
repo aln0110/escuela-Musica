@@ -186,16 +186,24 @@
 
     <script>
 
-        const today = new Date().toISOString().split('T')[0];
+    const fechaInicio = document.getElementById('fechaIniciojunta');
+    const fechaFin = document.getElementById('fechaFinjunta');
 
 
-        const fechaInicio = document.getElementById('fechaIniciojunta');
-        fechaInicio.setAttribute('max', today); 
+    fechaInicio.addEventListener('change', function() {
+
+        fechaFin.setAttribute('min', fechaInicio.value);
+    });
 
 
-        const fechaFin = document.getElementById('fechaFinjunta');
-        fechaFin.setAttribute('min', today); 
-    </script>
+    fechaFin.addEventListener('change', function() {
+
+        if (fechaFin.value < fechaInicio.value) {
+            fechaFin.value = fechaInicio.value;
+        }
+    });
+</script>
+
 
 
 </body>

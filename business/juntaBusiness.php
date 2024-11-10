@@ -39,6 +39,10 @@ class JuntaBusiness
         return $this->juntaData->logicalDelte($idjunta);
     }
 
+    public function verifyPuesto($junta){
+        return $this->juntaData->verifyPuesto($junta);
+    }
+
     
 }
 

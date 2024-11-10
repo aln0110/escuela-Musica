@@ -17,6 +17,25 @@
             <label for="Curso">Sigla del curso</label><br>
             <input type="text" id="sigla" name="sigla" required><br>
 
+             <label for="Crusos">Lista de cursos</label><br>
+            <?php
+             include_once "../business/cursoBusiness.php";
+             $cursoBusiness = new CursoBusiness();
+             $cursos = $cursoBusiness->getCursosActivo();
+
+                echo "<select name='sigla2' id='sigla2'>";
+
+                foreach ($cursos as $curso) {
+
+                        echo "<option value='".$curso->getSiglas()."'>".$curso->getNombre()."</option>";
+
+                }
+
+
+                echo "</select>";
+
+            ?>  <br>
+
 
             <input type="submit" value="Crear" name="create">
 

@@ -2,7 +2,19 @@
 include "juntaBusiness.php";
 
 if (isset($_POST['create'])) {
-    if (isset($_POST['nombrejunta']) && isset($_POST['cedulajunta']) && isset($_POST['juntapuesto']) 
+    $juntaBusiness = new JuntaBusiness();
+    if ($juntaBusiness->verifyPuesto($_POST['juntapuesto'])) {
+
+        echo "<script>
+            alert('Este puesto ya existe');
+            window.location.href = '../view/juntaView.php';
+          </script>";
+    exit();
+        
+        
+    } else {
+
+        if (isset($_POST['nombrejunta']) && isset($_POST['cedulajunta']) && isset($_POST['juntapuesto']) 
         && isset($_POST['fechaIniciojunta']) && isset($_POST['fechaFinjunta'])  && isset($_POST['correo'])&& isset($_POST['telefono']) && isset($_POST['tipoIdentificacion'])) {
         
         $nombrejunta = $_POST['nombrejunta'];
@@ -34,6 +46,9 @@ if (isset($_POST['create'])) {
     } else {
         header("Location: ../view/juntaView.php?error=missingFields");
     }
+       
+    }
+    
 }
  else if (isset($_POST['update'])) {
     if (isset($_POST['nombrejunta']) && isset($_POST['cedulajunta']) && isset($_POST['juntapuesto']) 

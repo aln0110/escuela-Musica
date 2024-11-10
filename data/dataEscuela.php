@@ -80,6 +80,7 @@ class  escuelaData extends Data
        // mysqli_close($this->conn);
         return $exists;
     }
-
+    
+    
 
 }

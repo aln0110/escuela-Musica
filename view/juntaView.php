@@ -185,24 +185,24 @@
     </div>
 
     <script>
-
     const fechaInicio = document.getElementById('fechaIniciojunta');
     const fechaFin = document.getElementById('fechaFinjunta');
 
-
     fechaInicio.addEventListener('change', function() {
-
         fechaFin.setAttribute('min', fechaInicio.value);
-    });
-
-
-    fechaFin.addEventListener('change', function() {
-
         if (fechaFin.value < fechaInicio.value) {
             fechaFin.value = fechaInicio.value;
         }
     });
+
+    fechaFin.addEventListener('change', function() {
+        fechaInicio.setAttribute('max', fechaFin.value);
+        if (fechaInicio.value > fechaFin.value) {
+            fechaInicio.value = fechaFin.value;
+        }
+    });
 </script>
+
 
 
 

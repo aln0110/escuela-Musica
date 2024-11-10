@@ -15,7 +15,7 @@
             <input type="text" id="cedulaEst" name="cedulaEst" required><br>
 
             <label for="Curso">Sigla del curso</label><br>
-            <input type="text" id="sigla" name="sigla" required><br>
+            <input type="text" id="sigla" name="sigla" ><br>
 
              <label for="Crusos">Lista de cursos</label><br>
             <?php

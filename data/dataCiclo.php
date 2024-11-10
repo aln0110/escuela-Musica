@@ -5,7 +5,7 @@ include_once '../domain/ciclo.php';
 class dataCiclo extends Data{
     public function insertCiclo($ciclo){
         $sql = "INSERT INTO tbciclo (tbciclonombre, tbciclodescripcion, tbciclotipo, tbcicloinicio, tbciclofin, tbcicloactivo) VALUES
-            ('" . $ciclo->getNombreCiclo() . "', '" . $ciclo->getDescripcionCiclo() . "', '" . $ciclo->getTipoCiclo() . "', '" . $ciclo->getFechaInicioCiclo() . "', '" . $ciclo->getFechaFinCiclo() . "', '" . $ciclo->getEstadoCiclo() . "')";
+            ('" . $ciclo->getNombreCiclo() . "', '" . $ciclo->getDescripcionCiclo() . "', '" . $ciclo->getTipoCiclo() . "', '" . $ciclo->getFechaInicioCiclo() . "', '" . $ciclo->getFechaFinCiclo() . "', '1')";
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         return $result;
@@ -36,7 +36,7 @@ class dataCiclo extends Data{
     }
 
     public function updateCiclo($ciclo){
-        $sql = "UPDATE tbciclo SET tbciclonombre = '" . $ciclo->getNombreCiclo() . "', tbciclodescripcion = '" . $ciclo->getDescripcionCiclo() . "', tbciclotipo = '" . $ciclo->getTipoCiclo() . "', tbcicloinicio = '" . $ciclo->getFechaInicioCiclo() . "', tbciclofin = '" . $ciclo->getFechaFinCiclo() . "', tbcicloactivo = '" . $ciclo->getEstadoCiclo() . "' WHERE tbcicloid = " . $ciclo->getIdCiclo();
+        $sql = "UPDATE tbciclo SET tbciclonombre = '" . $ciclo->getNombreCiclo() . "', tbciclodescripcion = '" . $ciclo->getDescripcionCiclo() . "', tbciclotipo = '" . $ciclo->getTipoCiclo() . "', tbcicloinicio = '1', tbciclofin = '" . $ciclo->getFechaFinCiclo() . "', tbcicloactivo = '" . $ciclo->getEstadoCiclo() . "' WHERE tbcicloid = " . $ciclo->getIdCiclo();
         $result = $this->conn->query($sql);
         mysqli_close($this->conn);
         return $result;

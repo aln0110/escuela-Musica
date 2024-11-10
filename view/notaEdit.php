@@ -41,6 +41,7 @@
                 } else {
 
                     $idEstudiante = $estudianteBusiness->getEstudianteIdByCedula($cedulaEst);
+                  
 
                     $matricualBusiness = new matriculaBusiness();
                     $cursosDetalles = $matricualBusiness->getCursoByEstudiante($idEstudiante);

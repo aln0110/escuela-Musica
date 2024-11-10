@@ -71,13 +71,13 @@ class dataEstudiante extends Data{
 
     public function getEstudianteIdByCedula($cedula) {
 
-        $sql = "SELECT tbestudianteid FROM tbEstudiante WHERE tbEstudiantecedula = '$cedula'";
+        $sql = "SELECT tbestudianteid FROM tbestudiante WHERE tbEstudiantecedula = '$cedula'";
         $result = $this->conn->query($sql);
         
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             mysqli_close($this->conn);
-            return $row['tbEstudianteid'];
+            return $row['tbestudianteid'];
         } else {
             mysqli_close($this->conn);
             return null;  

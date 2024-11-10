@@ -2,6 +2,15 @@
 
 include_once '../business/matriculaBusiness.php';
 include_once '../domain/cursoDetalles.php';
+include_once '../business/estduianteBusiness.php';
+
+$estudianteBusiness = new EstudianteBusiness();
+
+$ced="118070920";
+
+$id=$estudianteBusiness->getEstudianteIdByCedula($ced);
+
+echo "Un id de los ides: " . $id . "<br>";
 
 $idEstudiante = 1;  
 

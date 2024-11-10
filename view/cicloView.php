@@ -91,8 +91,8 @@
     </div>
 
     <script>
-    const fechaInicio = document.getElementById('fechaIniciojunta');
-    const fechaFin = document.getElementById('fechaFinjunta');
+    const fechaInicio = document.getElementById('fechaInicio');
+    const fechaFin = document.getElementById('fechaFin');
 
     fechaInicio.addEventListener('change', function() {
         fechaFin.setAttribute('min', fechaInicio.value);
